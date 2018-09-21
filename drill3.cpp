@@ -13,7 +13,7 @@ string friend_name;
 cout<< "write the name of the friend you want to talk about:\n";
 cin >> friend_name;
 cout << "Have you seen" << friend_name << " lately?\n";
-char friend_gender = '';
+char friend_gender = ' ';
 cout << "if the friend we are talking about is male, write m, if not, write f";
 cin >> friend_gender;
 if (friend_gender=='m')
@@ -58,3 +58,4 @@ string name;
 cout<<"please enter your name:";
 cin>> name;
 cout << "\nYours sincerely,\n\n" <<name;
+}
