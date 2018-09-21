@@ -1,7 +1,6 @@
 
 #include "std_lib_facilities.h"
 
-
 int main()
 {
 cout << "Please enter the name of the person you want to write to:\n";
@@ -18,15 +17,15 @@ cout << "blah blah\n";
 cout<< "write the name of the friend you want to talk about:\n";
 cin >> friend_name;
 cout << "Have you seen " << friend_name << " lately?\n";
-cout << "if the friend we are talking about is male, write m, if not, write f";
+cout << "if the friend we are talking about is male, write m, if not, write f\n";
 cin >> friend_gender;
 if (friend_gender=='m')
 {
-cout << "If you see " << friend_name << "please ask him to call me\n";
+cout << "If you see " << friend_name << " please ask him to call me\n";
 }
 else if (friend_gender=='f')
 {
-cout << "If you see " << friend_name << "please ask her to call me\n";
+cout << "If you see " << friend_name << " please ask her to call me\n";
 }
 
 cout << "please enter the age of the recipient:\n";
@@ -34,11 +33,11 @@ cin >> age;
 
 if ( age<=0)
 {
-simple_error;
+cout << simple_error<<'\n';
 }
 else if (age>=110)
 {
-simple_error;
+cout << simple_error<<'\n';
 }
 else
 { /*open*/ 
