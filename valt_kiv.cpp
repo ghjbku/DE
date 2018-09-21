@@ -2,11 +2,13 @@
 
 int main()
 {
-int a,b;
+int a,b,c;
 cout <<"please write two numbers:\n";
 cin>> a;
 cin>> b;
-a=(a+b)+(-a);
-b=(b+a)+(-b);
-cout <<a<<"\n"<<b;
+c=a;
+a=(a+b)-a;
+b=(b+c)-b; //2+1-2
+cout <<a<<"\n";
+cout<<b;
 }
