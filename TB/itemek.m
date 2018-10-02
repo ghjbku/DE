@@ -47,3 +47,11 @@
 %több paraméter haszn.
 %2 param. gömb
 %
+u=linspace(-2,2*pi);
+v=linspace(-2,5*pi);
+ [u,v]=meshgrid(u,v);
+x= 5*cos(u^3).*cos(v); % x=x(u,v)
+y= 5*cos(u).*sin(v); % y=y(u,v)
+z= 5*sin(u);          % z=z(u,v)
+surf(x,y,z);
+rotate3d on;
