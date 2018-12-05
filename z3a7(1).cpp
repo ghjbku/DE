@@ -69,6 +69,7 @@
  beágyazott Csomopont osztály. Miért ágyazzuk be? Mert külön nem szánunk neki szerepet, ezzel
  is jelezzük, hogy csak a fa részeként számiolunk vele.*/
 
+/*osztályon belűl csak prototípusok legyenek,<<operátor kiiktatása,szeggyük külön a programot 3 részre*/
 
 class LZWBinFa
 {
@@ -442,6 +443,7 @@ LZWBinFa::rszoras (Csomopont * elem)
         }
     }
 }
+
 
 // teszt pl.: http://progpater.blog.hu/2011/03/05/labormeres_otthon_avagy_hogyan_dolgozok_fel_egy_pedat
 // [norbi@sgu ~]$ echo "01111001001001000111"|./z3a2
