@@ -471,6 +471,11 @@ length(nemvaltoztatesnyer)+length(valtoztatesnyer)
         </programlisting></para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
+            </para><para>a kísérlet változóban található a nyeremény helye,
+            a játékos változóban található a játékos által választott ajtó.
+            Az első for ciklusban megnézzük, hogy a játékos eltalálta-e a helyes ajtó számát, és a műsorvezető ezen feltételtől függően választ ajtót magának.
+            Ha eltalálta, akkor a műsorvezető véŁetlenszerűen választ a két üres ajtó közül.
+            Viszont ha nem találta el a játékos, akkor a vezető csak 1 ajtót választhat, hiszen nem nyithatja ki a nyereményt, se a játékos által választott ajtót.
         </para>
         <para></para>
     </section>

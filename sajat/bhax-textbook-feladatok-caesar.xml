@@ -518,11 +518,38 @@ main (void)
         </para>
         <para>
         <!--<programlisting language="c++"><![CDATA[]]></programlisting>-->
-        A forráskód hossza miatt nem tenném bele a könyvbe, de kódsnippet-eket fogok használni.
+        A forráskódot a hossza miatt nem tenném bele a könyvbe, de kódsnippet-eket fogok használni.
         </para>
+        <para><programlisting language="c++">
+        <![CDATA[//main.cpp fájl tartalma
+        #include <iostream>
+        #include "mlp.cpp"
+        #include <png++/png.hpp>
+
+        int main (int argc, char **argv)
+        {
+        png::image <png::rgb_pixel> png_image (argv[1]);
+
+        int size = png_image.get_width()*png_image.get_height();
+
+        Perceptron* p = new Perceptron (3, size, 256,1);
+        double* image = new double(size);
+
+            for(int i {0};i<png_image.get_width();++i)
+                for(int j{0};j<png_image.get_height();++j)
+                    image[i*png_image.get_Width()+j]= png_image[i][j].red;
+        double value = (*p) (image);
+        std::cout <<value<<std:endl;
+
+        delete p;
+        delete [] image;
+        }
+        ]]>
+        </programlisting></para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+        </para>   
+        <para>a lefordításhoz ezt kell beírni:<command>g++ mpl.hpp main.cpp -o perceptron -lpng -std=c++11</command></para>         
     </section>        
         
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
