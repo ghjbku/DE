@@ -16,9 +16,24 @@
         <para>
             Megoldás forrása:                
         </para>
+        <figure>
+            <title>Az <type> átváltó</type> Turing gép</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="elmélet/unar_dec.png" scale="70" />
+                </imageobject>
+                <textobject>
+                    <phrase>Az <type> átváltó</type> Turing gép</phrase>
+                </textobject>
+            </mediaobject>
+        </figure>    
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+        <para>Az átváltó bekér egy Decimális számot, legyen ez egy tetszőleges szám, és nevezzük el N-nek.
+        Ezután egy képlettel átváltja azt Unáris számrendszerbe.
+        Ez a képlet a következő: <command>unar=egysegelem*N</command>
+        majd "kirajzolja" az eredményt.</para>
     </section>        
         
     <section>
@@ -30,10 +45,22 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:    <link xlink:href="https://arato.inf.unideb.hu/batfai.norbert/UDPROG/deprecated/Prog1_1.pdf?fbclid=IwAR2APDrK-Cky5lqHy_fCBzTZ_9fEhFCRuHHHExeK3WUQuOfzcUSfeVbNfqI">A lentebb látható képek itt megtalálhatóak a 30. oldalon</link>   
         </para>
+        <figure>
+            <title>A <type> környezetfüggő</type> grammatikák</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="elmélet/nyelvosztaly.png" scale="40" />
+                </imageobject>
+                <textobject>
+                    <phrase>Környezetfüggés két példában</phrase>
+                </textobject>
+            </mediaobject>
+        </figure>  
         <para>
             Tanulságok, tapasztalatok, magyarázat...
+       </para><para>Környezetfüggő(hossznemcsökkentő)</para><para>P1XP2 → P1QP2, P1, P2 eleme (VN U VT)*, X VN beli, Q (VN U VT)+ beli, kivéve S → üres, de akkor S nem lehet jobb oldali egyetlen szabályban sem, tehát Az a<superscript>n</superscript>b<superscript>n</superscript>c<superscript>n</superscript> nyelv nem környezetfüggetlen
         </para>
     </section>        
                 
@@ -347,6 +374,15 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+        <para>az első formula természetes nyelvi értelmezése:
+        <command> minden x számra létezik egy olyan y szám, amely nagyobb, mint x és y prím</command> </para>
+        <para>a második formula természetes nyelvi értelmezése:
+        <command> minden x számra létezik egy olyan y szám, amely nagyobb, mint x és y prím.Továbbá y rákövetkezőjének a rákövetkezője is prím.</command> </para>
+        <para>a harmadik formula természetes nyelvi értelmezése:
+        <command> minden y számra létezik egy olyan x szám, hogy x prím és x kisebb, mint y</command> </para>
+        <para>a negyedik formula természetes nyelvi értelmezése:
+        <command> minden y számra létezik egy olyan x szám, hogy y kisebb, mint x, és x nem prím.</command> </para>
+    
     </section>                                                                                                                                                                            
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     <section>
