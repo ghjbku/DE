@@ -222,7 +222,8 @@ main ( int argc, char *argv[] )
 
 }
 ]]>
-        </programlisting>        
+        </programlisting>   
+        <para>A kep.set_pixel függvény felel a kép elkészítéséért, míg a benne lévő rgb_pixel a színének módosításáért.</para>     
     </section>        
                 
     <section>
@@ -452,8 +453,12 @@ main ( int argc, char *argv[] )
             Megoldás videó: <link xlink:href=""></link>
             Illetve <link xlink:href="https://bhaxor.blog.hu/2018/09/02/ismerkedes_a_mandelbrot_halmazzal">https://bhaxor.blog.hu/2018/09/02/ismerkedes_a_mandelbrot_halmazzal</link>.        </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>
+            Megoldás forrása: <link xlink:href="https://github.com/ghjbku/DE/tree/master/sajat/biomoprhs"></link>
         </para>
+        <para>Ezen feladat megoldása hihetetlenül sokáig tartott, és ez alatt nem a program megírását értem, hanem annak lefordítását.
+        a legnagyobb fejfájást a makefile legenerálása okozta, viszont hosszas keresgélés után ráleltem a megoldásra, ami egyetlen sor:<command>sudo apt-get install qt5-default</command> ezután jöhet a <command>qmake -project</command> parancs, amivel létrehozzuk a *.pro fájlunkat, ebből lesz a make fájl.
+        A makefile legenerálása ezen parancs beírásával történik: <command>qmake profájlneve.pro</command>, majd <command>make</command> és már futtatható a program.
+        a képet a jobb egérgomb használatával lehet nagyítani.</para>
     </section>                     
                                                                                                                                                                             
     <section>
