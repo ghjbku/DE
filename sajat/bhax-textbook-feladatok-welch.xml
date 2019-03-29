@@ -17,12 +17,118 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása Java-ban:                
         </para>
+        <programlisting language="java"><![CDATA[
+        public class PolárGenerátor {
+    
+    boolean nincsTárolt = true;
+    double tárolt;
+    
+    public PolárGenerátor() {
+        
+        nincsTárolt = true;
+        
+    }
+    
+    public double következő() {
+        
+        if(nincsTárolt) {
+            
+            double u1, u2, v1, v2, w;
+            do {
+                u1 = Math.random();
+                u2 = Math.random();
+                
+                v1 = 2*u1 - 1;
+                v2 = 2*u2 - 1;
+                
+                w = v1*v1 + v2*v2;
+                
+            } while(w > 1);
+            
+            double r = Math.sqrt((-2*Math.log(w))/w);
+            
+            tárolt = r*v2;
+            nincsTárolt = !nincsTárolt;
+            
+            return r*v1;
+            
+        } else {
+            nincsTárolt = !nincsTárolt;
+            return tárolt;
+        }
+    }
+    
+    public static void main(String[] args) {
+        
+        PolárGenerátor g = new PolárGenerátor();
+        
+        for(int i=0; i<10; ++i)
+            System.out.println(g.következő());
+        
+    }
+    
+}]]></programlisting>
+        <para>
+            Megoldás forrása C++-ban:                
+        </para>
+        <programlisting language="c++"><![CDATA[#include "std_lib_facilities.h" 
+
+
+class PolarGenerator{
+
+bool nincsTarolt=true;
+double tarolt;
+
+ public :
+double kovetkezo()
+ {
+	
+
+	if(nincsTarolt)
+	{
+	double u1,u2,v1,v2,w;
+	u1= ((double) rand() / (double)(RAND_MAX));
+	u2= ((double) rand() / (double)(RAND_MAX));
+	v1=(2*u1)-1;
+	v2=(2*u2)-1;
+	
+	w=(v1*v1)+(v2*v2);
+	 while(w>1)
+	 {double r = sqrt((-2*log(w))/w);
+	  tarolt=r*v2;
+	  nincsTarolt=!nincsTarolt;
+	  return r*v1;
+	 }
+	}
+	else
+	{
+	 nincsTarolt=!nincsTarolt;
+	return tarolt;
+	}
+ };
+
+};
+
+int main()
+{
+std::srand(std::time(0));
+PolarGenerator g;
+for(int i=0; i<10; ++i)
+	std::cout<<g.kovetkezo()<<std::endl;
+return 0;
+}]]></programlisting>
         <para>
             Tanulságok, tapasztalatok, magyarázat... térj ki arra is, hogy a JDK forrásaiban a Sun programozói
             pont úgy csinálták meg ahogyan te is, azaz az OO nemhogy nem nehéz, hanem éppen természetes neked!
-        </para>                
+        
+        A java forrás szemantikailag megegyezik a JDK forrásokkal.
+        </para>  
+        <para>A Java kódhoz képes van egy kis változtatás a kódban.
+        Már az elején található egy különbség, a <command>public</command> kulcsszó, amely Java-ban minden függvény elé bekerül, amit public-ként szeretnénk kezelni, amíg C++-ban egy egyszerű <command>public:</command> kulcsszó után bármennyi függvényt deklarálhatunk, az minden publikus lesz.</para>
+        <para>Egy másik különbség, hogy amíg Java-ban a matematikai műveleteket a <command>Math.művelet</command> előtaggal hívjuk meg, addig C++-ban az összes ilyen művelet függvényként van beépítve egy cmath header fájlba, így csak a függvény neveit kell meghívnunk.
+        Viszont hátrányként tekinthető, hogy az <command>#inculde <![CDATA[<cmath>]]></command> sor nélkül egy művelet se használható.(persze az alapműveletek kivételek: +-*/%)</para>              
     </section>        
 
     <section>
