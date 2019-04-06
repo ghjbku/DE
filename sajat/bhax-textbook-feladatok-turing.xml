@@ -305,6 +305,11 @@ A C megoldás BogoMIPS-el: <link xlink:href="https://github.com/ghjbku/DE/blob/m
         <para>
             Tanulságok, tapasztalatok, magyarázat... 
         </para>
+        <para>
+        A bit méretét a <command>length</command> változó tárolja, amit úgy töltünk fel, hogy amíg a bit el nem éri a kezdési értéket, addig a ciklusban mingíg növeljük a változó értékét 1-el.
+        Majd ezen értéket a végén kiírjuk.
+        Az unsigned típus 2<superscript>n</superscript> különböző értéket vehet fel 0 és n között.
+        </para>
     </section>                     
 
     <section>
@@ -382,7 +387,75 @@ return 0;
             Tanulságok, tapasztalatok, magyarázat...
 
         </para>
-        <para>A pagerank</para>
+        <para>A pagerank algoritmust a google fejlesztette ki azzal a céllal, hogy a weboldalak minőségét rangsorolja.</para>
+   <para>A feladat komplexitása miatt a soronkénti értelemzést választottam.Kezdjük is el.</para>
+   <programlisting language="c"><![CDATA[void
+kiir (double tomb[], int db)
+{
+int i;
+for (i=0; i<db; i++)
+printf("PageRank [%d]: %lf\n", i, tomb[i]);
+}]]>
+   </programlisting>
+    <para>Ez a függvény a minsősítés végeredményét fogja kiírni.
+    Egy egyszerű for ciklusból áll, amely a függvényparaméterként megadott <command>db</command>-szor fog lefutni és kiírja az ugyancsak függvényparaméterből származó <command>tomb[]</command> tömb elemeit.</para>
+    <programlisting language="c"><![CDATA[
+double tavolsag(double pagerank[],double pagerank_temp[],int db)
+{
+double tav = 0.0;
+int i;
+for(i=0;i<db;i++)
+tav +=abs(pagerank[i] - pagerank_temp[i]);
+return tav;
+}
+]]></programlisting>
+     <para>Ez a következő függvény már bonyolultabb.A függvényünk két double típusú tömböt és egy számot kér paraméterül.
+     A távolság kiszámítására itt is egy for-ciklus lesz segítségünkre, azon belűl pedig egy abszolútérték függvény, amelyben a <command>pagerank</command> tömbből kivonjuk a <command>pagerank_temp</command> tömböt.</para>
+     <programlisting language="c"><![CDATA[int main(void)
+{
+double L[4][4] = {
+{0.0, 0.0, 1.0 / 3.0, 0.0},
+{1.0, 1.0 / 2.0, 1.0 / 3.0, 1.0},
+{0.0, 1.0 / 2.0, 0.0, 0.0},
+{0.0, 0.0, 1.0 / 3.0, 0.0}
+};
+
+double PR[4] = {0.0, 0.0, 0.0, 0.0};
+double PRv[4] = {1.0 / 4.0, 1.0 / 4.0, 1.0 / 4.0, 1.0 / 4.0};
+
+long int i,j,h;
+i=0; j=0; h=5;
+]]></programlisting>
+      <para>Amint láthatjuk, a main függvényen belül elkezdjük definiálni a változókat, melyeket az előbbi két függvényre majd ráeresztünk.
+      </para>
+      <programlisting language="c"><![CDATA[
+for (;;)
+{
+ for(i=0;i<4;i++)
+ PR[i] = PRv[i];
+  for (i=0;i<4;i++)
+  {
+  double temp=0;
+    for (j=0;j<4;j++)
+    temp+=L[i][j]*PR[j];
+    PRv[i]=temp;
+  }
+
+if ( tavolsag(PR,PRv, 4) < 0.00001)
+break;
+}
+kiir (PR,4);
+return 0;
+]]></programlisting>
+    <para>Továbbra is a main függvényben vagyunk. Már megtörtént a változó deklarálás, tehát elkezdődhet a rangsorolás.
+    Belépünk egy for-ciklusba, majd azon belűl rétegezve létrehozunk még 3 másik for-ciklust.
+    Az első réteg a <command>PR</command> tömböt azonosítja a <command>PRv</command> tömbbel.
+    A második réteg egy <command>temp</command> változóban összeszorozza az <command>L[][]</command> kétdimenziós tömböt és az újonan kapott <command>PR</command> tömböt.
+    Majd minden ciklus végén hozzáadja az új értékeket az előző értékhez.
+    Ezután a <command>PRv</command> tömb értékéül adjuk a temp változót.
+    ezután visszatérünk az első for-ciklusba, ahol pedig egy if elágazással megnézzük, hogy a <command>tavolsag()</command> függvény visszatérési értéke kissebb-e, mint 0.00001
+    . Ha igen, akkor kilép a ciklusból.
+    A program a végén kiírja a <command>PR</command> tömb tartalmát a <command>kiir()</command> függvény segítségével.</para>
     </section>
 
     <section xml:id="Brun">
@@ -396,7 +469,7 @@ return 0;
         <para>
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Primek_R">https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Primek_R</link>
         </para>
-        <para><programlisting language="r"><![CDATA[library(matlab)
+        <programlisting language="r"><![CDATA[library(matlab)
 
 stp <- function(x){
 
@@ -413,8 +486,43 @@ x=seq(13, 1000000, by=10000)
 y=sapply(x, FUN = stp)
 plot(x,y,type="b")
 ]]></programlisting>
-        </para>
-    </section>
+       <para>A Brun tétel az ikerprímekkel foglalkozik, és kimondja, hogy ezen prímek reciprokösszege egy véges értékhez konvergál, ún. Brun-konstans felé.
+       jelölése: <command>B<subscript>2</subscript></command></para>
+       <para>Mivel az R nyelvben még gyakorlatlanok vagyunk, így megint soronként fogok magyarázatot adni a forráskódra.
+       </para>
+       <programlisting language="r"><![CDATA[library(matlab)
+
+stp <- function(x){
+
+    primes = primes(x)
+    diff = primes[2:length(primes)]-primes[1:length(primes)-1]
+    idx = which(diff==2)
+    t1primes = primes[idx]
+    t2primes = primes[idx]+2
+    rt1plust2 = 1/t1primes+1/t2primes
+    return(sum(rt1plust2))
+}
+]]></programlisting>
+ <para>A library(matlab) paranncsal meghívjuk a matlab külső fájlt, amelyben egyéb függvények mellett megtalálható a <command>primes()</command> függvény.
+Ez a függvény a paraméterként megadott számig kiszámolja a prímszámokat. 
+R-ben a függvény létrehozása így történik:</para>
+<para><![CDATA[függvénynév <- function(paraméter lista){függvény törzs
+return(visszatérési érték)} ]]></para>
+<para>az első sorban feltöltjük a primes változót a <command>primes(x)</command> függvény értékeivel.
+majd a második sorban a diff változóba belerakjuk nd> és a <command>primes[1:length(primes)-1]</command> vektorok különbségét.
+</para>
+<para>a <command>primes[2:length(primes)]</command> vektor a primes 2. elemétől a változó hosszáig tartalmazza a számokat.
+Ezzel szemben a <command>primes[1:length(primes)-1]</command> rész a primes 1. elemétől az utolsó előtti elemig tartalmazza a számokat.
+Ezeket kivonva megkapjuk a prímszámok különbségét.
+Ha ez a külnbség 2, akkor beszélünk ikerprímekről.
+Azt, hogy a különbség 2-e, az idx változó nézi meg, majd az indexüket eltárolja.</para>
+<para>a t1primes változó tartalmazza azokat a prímeket, amelyeknek a helyét már meghatároztuk az idx változóban.
+Tehát az ikerprímek első fele.
+A t2primes viszont nem szimplán a primes[idx]-et adja vissza, hiszen az az ikrek első fele lenne, de tudjuk, hogy a különbség a kettő prím között 2, tehát a másik felét úgy kapjuk meg, ha hozzáadunk az [idx] helyen álló számhoz 2-őt.
+</para>
+<para>Az rt1plust2 változóban összeadjuk a t1 és a t2 reciprokait.
+majd végezetül visszaadjuk a return()-ben a reciprokértékek összegét.</para>   
+ </section>
     
     <section xml:id="bhax-textbook-feladatok-turing.MontyHall">
         <title>A Monty Hall probléma</title>

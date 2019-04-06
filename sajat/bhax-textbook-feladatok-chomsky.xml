@@ -60,8 +60,13 @@
         </figure>  
         <para>
             Tanulságok, tapasztalatok, magyarázat...
-       </para><para>Környezetfüggő(hossznemcsökkentő)</para><para>P1XP2 → P1QP2, P1, P2 eleme (VN U VT)*, X VN beli, Q (VN U VT)+ beli, kivéve S → üres, de akkor S nem lehet jobb oldali egyetlen szabályban sem, tehát Az a<superscript>n</superscript>b<superscript>n</superscript>c<superscript>n</superscript> nyelv nem környezetfüggetlen
+       </para>
+       <para>A konstansok és változók alatt helyezkednek el a helyettesítési szabályok.
+       Ezeket a szabályokat alkalmazva addig változtatjuk a megadott szót, amíg a szó maga már csak konstansokból áll.
+       Mivel nincs olyan lehetőség, hogy a szó csak változókból áll, ezért a nyelvezet nem lehet környezetfüggetlen.</para>
+       <para>Környezetfüggő(hossznemcsökkentő)</para><para>P1XP2 → P1QP2, P1, P2 eleme (VN U VT)*, X VN beli, Q (VN U VT)+ beli, kivéve S → üres, de akkor S nem lehet jobb oldali egyetlen szabályban sem, tehát Az a<superscript>n</superscript>b<superscript>n</superscript>c<superscript>n</superscript> nyelv nem környezetfüggetlen
         </para>
+        <para></para>
     </section>        
                 
     <section>
@@ -333,21 +338,10 @@ main()
             <listitem>                                    
 
                 <programlisting><![CDATA[printf("%d %d", f(&a), a);]]></programlisting>            
-            <para>ugyanúgy két számot ad vissza, de az f függvényben valami történik.</para>
+            <para>ugyanúgy két számot ad vissza, de az f függvényben az <command>a</command> változó memóriacíme helyezkedik el.</para>
             </listitem>
         </orderedlist>
-        <para>
-            Megoldás forrása:  
-        </para>
-
-        <para>
-            Megoldás videó: 
-        </para>
-
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-
+    
     </section>                     
 
     <section>
@@ -448,11 +442,11 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             </listitem>
             <listitem>
                 <programlisting><![CDATA[int (&tr)[5] = c;]]></programlisting>  
-                 <para>létrehoz egy <command>tr tömböt</command>, melynek az értéke c</para>              
+                 <para>létrehoz egy <command>tr tömb referenciát</command>, melynek az értéke c</para>              
             </listitem>
             <listitem>
                 <programlisting><![CDATA[int *d[5];]]></programlisting>   
-                 <para>egy <command>d  tömbre mutató pointer</command></para>             
+                 <para>egy egészekre mutató <command>d tömb pointer</command></para>             
             </listitem>
             <listitem>
                 <programlisting><![CDATA[int *h ();]]></programlisting>   
@@ -464,11 +458,12 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             </listitem>
             <listitem>
                 <programlisting><![CDATA[int (*v (int c)) (int a, int b)]]></programlisting> 
-                 <para></para>               
+                  <para>egészet visszaadó és két egészet kapó függvényre mutató mutatót visszaadó, egészet kapó függvény</para>                        
+                        
             </listitem>            
             <listitem>
                 <programlisting><![CDATA[int (*(*z) (int)) (int, int);]]></programlisting> 
-                 <para></para>               
+                 <para>függvénymutató egy egészet visszaadó és két egészet kapó függvényre mutató mutatót visszaadó, egészet kapó függvényre</para>                                      
             </listitem>            
         </itemizedlist>       
 
@@ -575,9 +570,7 @@ main ()
     return 0;
 }
 ]]></programlisting>            
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
+
     </section>                     
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

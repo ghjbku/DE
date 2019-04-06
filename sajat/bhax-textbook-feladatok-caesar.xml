@@ -190,7 +190,8 @@ a második sor pedig egy string másoló függvény, ennek szintaktikája a köv
     public ExorTitkosító(String kulcsSzöveg,
             java.io.InputStream bejövőCsatorna,
             java.io.OutputStream kimenőCsatorna)
-            throws java.io.IOException {
+            throws java.io.IOException 
+    {
         
         byte [] kulcs = kulcsSzöveg.getBytes();
         byte [] buffer = new byte[256];
@@ -198,9 +199,11 @@ a második sor pedig egy string másoló függvény, ennek szintaktikája a köv
         int olvasottBájtok = 0;
 
         while((olvasottBájtok =
-                bejövőCsatorna.read(buffer)) != -1) {
+        bejövőCsatorna.read(buffer)) != -1)
+        {
             
-            for(int i=0; i<olvasottBájtok; ++i) {
+            for(int i=0; i<olvasottBájtok; ++i) 
+            {
                 
                 buffer[i] = (byte)(buffer[i] ^ kulcs[kulcsIndex]);
                 kulcsIndex = (kulcsIndex+1) % kulcs.length;
@@ -233,8 +236,13 @@ a második sor pedig egy string másoló függvény, ennek szintaktikája a köv
             Tanulságok, tapasztalatok, magyarázat...
         </para>     
         <para>A Java verzió is hasonlóképpen működik, mint a C verzió, csak a nyelvi sajátosságoknak köszönhetően találhatóak különbségek a két kód között.
-        Az egyik ilyen nyelvi sajátosság, hogy Java-ban a try-catch blokk szükséges a kód lefordulásához.</para>       
-    </section>        
+        Mivel a Java is magasszintű programozási nyelv, ezért a forráskód értelmezése könnyebb, mint egy assembly nyelvé.
+        </para><para>A main függvényben található egy try-catch blokk, ez egyfajta hibakeresés.
+        A try részbe kerülnek a kódok, amik nagy eséllyel hibát dobhatnak, és a catch részben ezeket a hibákat elkapja a program, és a programozó által megadott üzenetet dobja ki.
+        Itt például Ha valami nem stimmel a megadott argumentumokkal, a program kiad egy exception-t.
+        Ez a C programban nincs jelen, de ha szeretnénk, akár oda is beleírthatjuk.
+        </para> 
+        </section>        
     <section>
         <title>C EXOR törő</title>
         <para>
@@ -581,7 +589,10 @@ compute(nn.exor, exor.data[,1:2])
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
-        <para>Itt a library(neuralnet) sor hasonlóképpen működik, mint a #include parancs a C nyelvekben.
+        <para>Ez a program a neurális hálóra alapszik.
+        <command>A neurális hálózat biológiai neuronok összekapcsolt csoportja. Modern használatban a szó alatt a mesterséges neurális hálót értjük, amelyek mesterséges neuronokból állnak.</command>
+        forrás: <link xlink:href="https://hu.wikipedia.org/wiki/Neur%C3%A1lis_h%C3%A1l%C3%B3zat">https://hu.wikipedia.org/wiki/Neur%C3%A1lis_h%C3%A1l%C3%B3zat</link></para><para>
+        Itt a library(neuralnet) sor hasonlóképpen működik, mint a #include parancs a C nyelvekben.
         A számításokért ez a könyvtár felel.
         Ezek a neurális hálók egyfajta ai-ként tekinthetőek, azaz megtanítjuk a számítógépnek, hogy az egyes kapukat felismerje.</para>          
     </section>        
@@ -630,6 +641,15 @@ compute(nn.exor, exor.data[,1:2])
             Tanulságok, tapasztalatok, magyarázat...
         </para>   
         <para>A program lényegében annyit csinál, hogy végigfut a bemeneten, és megszámolja a piros pixeleket.
+        Ezt a két egymásba épített forciklusban láthatjuk.
+        az első ciklus <command><![CDATA[for(int i {0};i<png_image.get_width();++i)]]></command> 0-tól a kép szélességéig fut, míg a második ciklus
+        <command><![CDATA[for(int j{0};j<png_image.get_height();++j)]]></command> a kép magasságáig fut,
+        a ciklus belsejében található maga a számolási művelet.
+        <command><![CDATA[image[i*png_image.get_Width()+j]= png_image[i][j].red;]]></command>
+        A kép szélességét szorozza i-vel és hozzáad j-t, és ez lesz az <command>image</command> változónk indexe.
+        ezen változót egyenlővé tesszük a png_image[i][j] kép piros(red) tagjával.
+        ezután egy value változóban eltároljuk az image változó értékét, amely perceptronra mutat.
+        Végül kiírjuk a <command>value</command> értékét.
         a lefordításhoz ezt kell beírni:<command>g++ mpl.hpp main.cpp -o perceptron -lpng -std=c++11</command></para>         
     </section>        
         
