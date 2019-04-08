@@ -15,6 +15,15 @@
         <para>         
             <citation>PICI</citation>       
         </para>
+        <para>Egy számítógép programozására három nyelvi szintet különböztetünk meg:</para>
+<para>-Gépi kód</para>
+<para>-assembly szint</para>
+<para>-Magas szint</para>
+<para>A magas szintű nyelveken megírt algoritmusokat forráskódoknak nevezzük.
+A forráskódok nyelvtani szabályi a szintaktikai szabályok, míg a jelentésbeli, tartalmi szabályzat a szemantika.
+Ezeket a kódokat interpreterrel, vagy fordítóprogrammal gépi kóddá kell konvertálni, hogy a processor értelmezni tudja.
+Egy fordítóprogram tetszőleges nyelvről tetszőleges nyelvre fordít.Amíg ez az egész kódból egy tárgyprogramot készít, addig az interpreter értelezi és rögtön lefuttatja a kódot, programfájl nélkül.</para>
+
     </section>        
     <section>
         <title>Programozás bevezetés</title>
