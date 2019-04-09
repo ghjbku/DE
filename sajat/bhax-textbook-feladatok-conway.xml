@@ -21,7 +21,7 @@
             <title>A hangyaszimuláció UML diagram</title>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="hangya/changya8.png" scale="5s0" />
+                    <imagedata fileref="hangya/changya8.png" scale="50" />
                 </imageobject>
                 <textobject>
                     <phrase>A hangyák akcióban</phrase>
@@ -71,6 +71,17 @@
         <para>
             Megoldás forrása: <link xlink:href=""></link>               
         </para>
+        <figure>
+            <title>Az életjáték futás közben</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="eletjatek/elet1.png" scale="50" />
+                </imageobject>
+                <textobject>
+                    <phrase>A hangyák akcióban</phrase>
+                </textobject>
+            </mediaobject>
+        </figure>  
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>            
@@ -83,7 +94,7 @@
             Megoldás videó: 
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>               
+            Megoldás forrása: <link xlink:href="/esport-talent-search/"></link>               
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
