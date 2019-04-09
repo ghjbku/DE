@@ -32,7 +32,71 @@ Egy fordítóprogram tetszőleges nyelvről tetszőleges nyelvre fordít.Amíg e
         </para>
         <para>
             Megoldás videó: <link xlink:href="https://youtu.be/zmfT9miB-jY">https://youtu.be/zmfT9miB-jY</link>
-        </para>        
+        </para>
+        <chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Gutenberg!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+        <cover>
+            <para>
+                Programozás tankönyvek rövid olvasónaplói.
+            </para>
+        </cover>
+    </info>
+    <section>
+        <title>Programozási alapfogalmak</title>
+        <para>         
+            <citation>PICI</citation>       
+        </para>
+        <para>Egy számítógép programozására három nyelvi szintet különböztetünk meg:</para>
+<para>-Gépi kód</para>
+<para>-assembly szint</para>
+<para>-Magas szint</para>
+<para>A magas szintű nyelveken megírt algoritmusokat forráskódoknak nevezzük.
+A forráskódok nyelvtani szabályi a szintaktikai szabályok, míg a jelentésbeli, tartalmi szabályzat a szemantika.
+Ezeket a kódokat interpreterrel, vagy fordítóprogrammal gépi kóddá kell konvertálni, hogy a processor értelmezni tudja.
+Egy fordítóprogram tetszőleges nyelvről tetszőleges nyelvre fordít.Amíg ez az egész kódból egy tárgyprogramot készít, addig az interpreter értelezi és rögtön lefuttatja a kódot, programfájl nélkül.</para>
+
+    </section>        
+    <section>
+        <title>Programozás bevezetés</title>
+        <para>                
+            <citation>KERNIGHANRITCHIE</citation>
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://youtu.be/zmfT9miB-jY">https://youtu.be/zmfT9miB-jY</link>
+        </para>
+    <para>
+            A C nyelvben kevés adattípust találhatunk<command>(char, int, float, double)</command>, de hozzájuk minősítők is tartozhatnak:(short(16 bit), long(32 bit) int). Bevezetésük oka az volt, hogy más hosszúságú egészekkel is dolgozhasson a programozó.
+            A signed/unsigned minősítők az előjel meglétére/hiányára utal, ha előjeles az egész vagy char, akkor -határ,+határ intervallumban vehet fel értéket az adott típus,
+            ha előjelmentes, akkor 0,2*határ intervallumban. Valós típusoknál a pontosságot lehet növelni a long-gal.
+        </para>
+      
+        <para>
+            Állandók is rendelkeznek a fenti típusokkal, minősítőkkel, pl: 2018 signed int is lehet. Léteznek karakterállandók pl 'a', értéke a gépi karakterkészletbeni
+            kódszáma. '0'=48. Karaktersorozatok is lehetnek állandók "alma", bizonyos karakterek pedig escape sorozattal adhatóak meg pl '\a' csipog, '\n' új sor.
+            A '\0' null-karakter karaktersorozat-állandót zár le. Az állandó kifejezés csak állandókat tartalmaz, fordítás során értékelődnek ki. #define MAX
+            AZ enum felsorolt állandó, egész értékek listája. pl enum boolean{no, yes}; Explicit mód megadhatjuk a legelső egészt, pl enum wat {e=5, g,h,z};, avgy összesnek.
+            Állandók neveinek különbözőeknek kell lennie.
+        </para>
+        <para>
+            A C-ben változók neveinek első karaktere betűnek kell lennie(_ még jó, de nem ajánlott ezzel kezdeni a konyvtári eljárások gyakran ezt használják). A nyelv kulcsszavai nem lehetnek változónevek.
+            Egész típusok(int, char) lebegőpontosak(float,double), lebegőpontosak pontosság eltérő, double pontosabb, de nagyobb hrlyet igényel.
+            A nyelv megengedi, hogy ezek között konvertáljunk, de ekkor például ha floatot konvertálunk egésszé a "pont utáni rész" leválik.
+            Ha egy kifejezésben egy lebegőpontos utasítás van, tehát egyik operandus lebegőpontos akkor az eredmény is az lesz, az egész típus lebegőpontossá alakul.
+        </para>
+
+    </section>        
+    <section>
+        <title>Programozás</title>
+        <para>                
+            <citation>BMECPP</citation>
+            beszerzésre nem volt lehetőség
+        </para>
+    </section>        
+</chapter>                
     </section>        
     <section>
         <title>Programozás</title>
