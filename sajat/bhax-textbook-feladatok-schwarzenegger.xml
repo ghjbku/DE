@@ -170,6 +170,9 @@ def evaluation(logits, labels):
         </programlisting>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
+            Ez a program egy számítógépet betanító program, futtatásához a TensorFlow szükséges.
+        Alacsony felbontású képeket analízáltat a számítógéppel, majd ezen képek alapján megpróbál egy másik képről hasonlóságot találni, éđ kitaláni, hogy mi látható a képen.
+
         </para>
     </section>        
 
@@ -378,6 +381,9 @@ tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)]]>
         </programlisting>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
+            32 bites képeket használ a betanulási fázisban, ezek egyfajta "neurális hálón" haladnak keresztül, és a gép a csomópontokban megadott feltételek szerint dönt a kép azonosításáról.
+            A végén százalékos formában kiírja a pontosságot.
+            Ez kissebb erőforrásigényű programoknál 90+% fölé mehet, amely az embernél jobb hatékonyságot jelent.
         </para>
     </section>        
 
@@ -393,6 +399,7 @@ tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)]]>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
+            nem működik a malmo tört minecraft-on
         </para>
     </section>       
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
