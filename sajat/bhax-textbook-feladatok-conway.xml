@@ -467,7 +467,7 @@ public void siklóKilövő(boolean [][] rács, int x, int y) {
         <para>
             Tanulságok, tapasztalatok, magyarázat...
             A QT miatt a program forráskódja több fájlra eshet szét, melyet <command>make</command> parancssal tudunk egy futtatható fájl-á konvertálni.
-             
+             Ez az életjáték a siklóKilövő szimulációt valósítja meg.
 
         </para>            
     </section>        
