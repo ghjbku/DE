@@ -499,6 +499,8 @@ main (void)
         Ezután a szöveg teljes méretét elosztja az 'sz' változó értékével, így megkapva az átlagos szóhosszt.
         </para>
         <para>az strcasestr függvény azt keresi, hogy a titkos-ban megtalálható-e a <command>2. paraméterben megadott szöveg</command> eg.:"hogy" és "nem"</para>         
+        <para>A többmagos változatban a különbség ott mutatkozik meg, hogy az <command>összes kulcs előállítása</command> résznél a #pragma sor megjelenik.
+        Ez a processzor magok között szétosztja a tennivalót, és "párhuzamosan" számolja majd írja ki az összes lehetséges kulcsot.</para>
     </section>        
     <section>
         <title>Neurális OR, AND és EXOR kapu</title>
@@ -594,7 +596,40 @@ compute(nn.exor, exor.data[,1:2])
         forrás: <link xlink:href="https://hu.wikipedia.org/wiki/Neur%C3%A1lis_h%C3%A1l%C3%B3zat">https://hu.wikipedia.org/wiki/Neur%C3%A1lis_h%C3%A1l%C3%B3zat</link></para><para>
         Itt a library(neuralnet) sor hasonlóképpen működik, mint a #include parancs a C nyelvekben.
         A számításokért ez a könyvtár felel.
-        Ezek a neurális hálók egyfajta ai-ként tekinthetőek, azaz megtanítjuk a számítógépnek, hogy az egyes kapukat felismerje.</para>          
+        Ezek a neurális hálók egyfajta ai-ként tekinthetőek, azaz megtanítjuk a számítógépnek, hogy az egyes kapukat felismerje.
+        Ez a három kapu az OR,AND,ORAND és az EXOR.
+        </para>
+        <para>Az OR kapu és annak "plotolása" itt található</para>
+        <programlisting><![CDATA[or.data <- data.frame(a1, a2, OR)
+
+nn.or <- neuralnet(OR~a1+a2, or.data, hidden=0, linear.output=FALSE, stepmax = 1e+07, threshold = 0.000001)
+
+plot(nn.or)]]></programlisting> 
+          <para>Az ORAND pedig itt:</para>    
+        <programlisting><![CDATA[a1    <- c(0,1,0,1)
+a2    <- c(0,0,1,1)
+OR    <- c(0,1,1,1)
+AND   <- c(0,0,0,1)
+
+orand.data <- data.frame(a1, a2, OR, AND)
+
+nn.orand <- neuralnet(OR+AND~a1+a2, orand.data, hidden=0, linear.output=FALSE, stepmax = 1e+07, threshold = 0.000001)
+
+plot(nn.orand)
+
+compute(nn.orand, orand.data[,1:2])]]></programlisting>  
+          <para>Végül pedig az EXOR kapu:</para>
+        <programlisting><![CDATA[a1      <- c(0,1,0,1)
+a2      <- c(0,0,1,1)
+EXOR    <- c(0,1,1,0)
+
+exor.data <- data.frame(a1, a2, EXOR)
+
+nn.exor <- neuralnet(EXOR~a1+a2, exor.data, hidden=c(6, 4, 6), linear.output=FALSE, stepmax = 1e+07, threshold = 0.000001)
+
+plot(nn.exor)
+
+compute(nn.exor, exor.data[,1:2])]]></programlisting>       
     </section>        
     <section>
         <title>Hiba-visszaterjesztéses perceptron</title>

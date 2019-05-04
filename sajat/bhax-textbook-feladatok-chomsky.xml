@@ -20,7 +20,7 @@
             <title>Az <type> átváltó</type> Turing gép</title>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="elmélet/unar_dec.png" scale="70" />
+                    <imagedata fileref="elmelet/unar_dec.png" scale="70" />
                 </imageobject>
                 <textobject>
                     <phrase>Az <type> átváltó</type> Turing gép</phrase>
@@ -51,7 +51,7 @@
             <title>A <type> környezetfüggő</type> grammatikák</title>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="elmélet/nyelvosztaly.png" scale="40" />
+                    <imagedata fileref="elmelet/nyelvosztaly.png" scale="40" />
                 </imageobject>
                 <textobject>
                     <phrase>Környezetfüggés két példában</phrase>
@@ -107,6 +107,7 @@ return 0;
         A hiba az *inline* parancs miatt van.
         ez a cmd a C99-el jött be, amely általában *extern inline* -al párban jelenik meg egy programkódban.
         Segítségével egy program nagyobb sebességre képes, viszont ezért cserébe nagyobb a helyigénye.
+        Az inline függvények a sorba illesztődnek be, ha arra szükség van, így jön létre a nagyobb sebesség.
         </para>
     </section>                     
 
@@ -383,6 +384,7 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         <title>Deklaráció</title>
             
         <para>
+           <command>Tutorálva Nagy Krisztián által.</command>
             Vezesd be egy programba (forduljon le) a következőket: 
         </para>
 

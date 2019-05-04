@@ -145,8 +145,10 @@ int main ( int argc, char *argv[] )
     <section>
         <title>Java életjáték</title>
         <para>
+        
             Írd meg Java-ban a John Horton Conway-féle életjátékot, 
             valósítsa meg a sikló-kilövőt!
+        <command>Tutoráltam Nagy Krisztiánt </command>
         </para>
         <para>
             Megoldás videó: 

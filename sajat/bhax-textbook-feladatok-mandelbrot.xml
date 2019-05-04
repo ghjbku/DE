@@ -15,8 +15,8 @@
         </para>
         <para>
             Megoldás forrása:                
- <link xlink:href="../../../bhax/attention_raising/CUDA/mandelpngt.c++">
-                <filename>bhax/attention_raising/CUDA/mandelpngt.c++</filename>
+ <link xlink:href="../mandelpngt.c++">
+                <filename>/mandelpngt.c++</filename>
             </link> nevű állománya.            
         </para>
                 <figure>
@@ -91,7 +91,8 @@
             lesz a kép, hogy változatosan színezzük, például minél későbbi 
             z-nél lép ki a körből, annál sötétebbre). 
         </para>       
-        <para>        
+        <para>   
+             
         </para>
 
     </section>        
@@ -223,7 +224,10 @@ main ( int argc, char *argv[] )
 }
 ]]>
         </programlisting>   
-        <para>A kep.set_pixel függvény felel a kép elkészítéséért, míg a benne lévő rgb_pixel a színének módosításáért.</para>     
+        <para>A program megírásához szükségünk lesz az STD::complex könyvtárra, és a png++/png.cpp könyvtárra.
+        Ez utóbbi felel az adatok képként való megjelenítéséért.
+        A kep.set_pixel függvény felel a kép elkészítéséért, míg a benne lévő rgb_pixel a színének módosításáért.</para>     
+     <para></para>
     </section>        
                 
     <section>
