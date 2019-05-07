@@ -262,9 +262,6 @@ main (int argc, char **argv)
   
   extern int max_melyseg, atlagosszeg, melyseg, atlagdb;
   extern double szorasosszeg, atlag;
-
-Katt a továbbra a teljes forrásért:
-
  
 
   printf ("melyseg=%d\n", max_melyseg-1);
@@ -392,6 +389,95 @@ szabadit (BINFA_PTR elem)
     }
 }
 ]]></programlisting>
+
+<para></para>
+<programlisting language="c"><![CDATA[
+BINFA_PTR
+uj_elem ()
+{
+  BINFA_PTR p;
+
+  if ((p = (BINFA_PTR) malloc (sizeof (BINFA))) == NULL)
+    {
+      perror ("memoria");
+      exit (EXIT_FAILURE);
+    }
+  return p;
+}]]></programlisting>
+<para>Ez a függvény egy p nevű BINFA_PTR típusú változót hoz létre,
+ha a memóriafoglalás nem valósul meg, akkor a <command>perror()</command>-ban megadott szöveget adja vissza, majd kilép az EXIT_FAILURE kulcsszóval.
+visszatérési értéke ez a p változó lesz.
+</para>
+<programlisting language="c"><![CDATA[[
+extern void kiir (BINFA_PTR elem);
+extern void ratlag (BINFA_PTR elem);
+extern void rszoras (BINFA_PTR elem);
+extern void szabadit (BINFA_PTR elem);]]></programlisting>
+<para>ez a négy függvény extern, ami annyit jelent, hogy globálisan használható.
+Egyébként visszatérési értéket nem várnak a függvények, argumentumként pedig egy BINFA_PTR típusú adatot várnak.</para>
+    <programlisting language="c">
+    <![CDATA[int
+main (int argc, char **argv)
+{
+  char b;
+
+  BINFA_PTR gyoker = uj_elem ();
+  gyoker->ertek = '/';
+  gyoker->bal_nulla = gyoker->jobb_egy = NULL;
+  BINFA_PTR fa = gyoker;
+]]>
+    </programlisting>
+    <para>
+    A BINFA_PTR gyoker = uj_elem (); sor egy BINFA_PTR típusú változót hoz létre, és értékül az uj_elem függvény visszatérési értékét kapja, ami a p változó volt.
+    Ez a gyoker változó rendelkezik <command>ertek</command> alváltozóval, aminek az értékére a '/' jelet állítsuk be. 
+    a következő sorban a gyoker változó bal_nulla és jobb_egy értékeit lenullázzuk.
+    Majd létrehozunk egy újabb változót, és értékül adjuk neki a gyoker változót.
+    </para>
+    <programlisting language="c"><![CDATA[
+       if (b == '0')
+	{
+	  if (fa->bal_nulla == NULL)
+	    {
+	      fa->bal_nulla = uj_elem ();
+	      fa->bal_nulla->ertek = 0;
+	      fa->bal_nulla->bal_nulla = fa->bal_nulla->jobb_egy = NULL;
+	      fa = gyoker;
+	    }
+	  else
+	    {
+	      fa = fa->bal_nulla;
+	    }
+	}]]></programlisting>
+    <para>Nézzük a nullás ágat először:
+    ha a b változó 0-át tartalmaz ebben a tickben, akkor :
+    Ha a fa változó bal_nulla tagja eddig nem tartlamazott értéket, akkor 
+    legyen az értéke az uj_elem függvény visszatérési értéke.
+    a bal_nulla változó ertek tag értéke pedig legyen "0";
+    Ezután a bal_nulla változóra mutató bal_nulla objektum értékét tesszük egyenlővé a jobb_egy változóéval, és azt lenullázzuk.
+    Végül a fa objektumot egyenlővé tesszük a gyoker-rel.
+    Ha a bal_nulla nem volt üres, akkor a fa változót tovább léptetjük a bal_nulla ágra.
+    </para>
+    <programlisting language="c"><![CDATA[  else
+	{
+	  if (fa->jobb_egy == NULL)
+	    {
+	      fa->jobb_egy = uj_elem ();
+	      fa->jobb_egy->ertek = 1;
+	      fa->jobb_egy->bal_nulla = fa->jobb_egy->jobb_egy = NULL;
+	      fa = gyoker;
+	    }
+	  else
+	    {
+	      fa = fa->jobb_egy;
+	    }
+	}]]></programlisting>
+    <para>Végül jöhet az eggyes ág:
+    ha a jobb_egy objektum értéke eddig NULL volt, akkor:
+    a jobb_egy legyen az uj_elem függvény p értéke.
+    a jobb_egy ertek változó értéke legyen "1".
+    A jobb_egy->bal_nulla objektum értékéül válaszzuk a jobb_egy-et, aminek pedig a NULL értéket adjuk.
+    végül a fa objektumot egyenlővé tesszük a gyoker-el.
+    Ha a jobb_egy nem volt NULL értékű, akkor a fa változót léptessük oda.</para>
     </section>        
         
     <section>
@@ -403,7 +489,50 @@ szabadit (BINFA_PTR elem)
             Megoldás videó:
         </para>
 
-        <para>Preorderbejárás: azaz a gyökér elem majd a bal oldali részfa preorder bejárása, végül ajobboldali részfa preorder bejárása.</para><para>Inorderbejárás: azaz először a bal részfa inorder bejárása, majd a gyökérelem, végül ajobboldali részfa inorder bejárása.</para><para>Postorderbejárás: azaz először a bal részfa posztorder bejárása, majd a jobboldali részfaposztorder bejárása, végül a gyökérelem feldolgozása.</para>
+        <para>Preorderbejárás: azaz a gyökér elem majd a bal oldali részfa preorder bejárása, végül ajobboldali részfa preorder bejárása.</para>
+         <programlisting language="C"><![CDATA[void
+kiir (BINFA_PTR elem)
+{
+    if (elem != NULL)
+        {
+        ++melyseg;
+        for (int i = 0; i < melyseg; ++i)
+            printf ("---");
+        printf ("%c(%d)\n", elem->ertek < 2 ? '0' + elem->ertek : elem->ertek,
+                melyseg);
+        if (melyseg > max_melyseg)
+            max_melyseg = melyseg;
+            
+        kiir (elem->jobb_egy);
+        kiir (elem->bal_nulla);
+        --melyseg;
+    }
+}
+]]></programlisting>
+        <para>Inorderbejárás: azaz először a bal részfa inorder bejárása, majd a gyökérelem, végül ajobboldali részfa inorder bejárása.</para>
+        <para>Postorderbejárás: azaz először a bal részfa posztorder bejárása, majd a jobboldali részfaposztorder bejárása, végül a gyökérelem feldolgozása.</para>
+         <programlisting language="C"><![CDATA[void
+kiir (BINFA_PTR elem)
+{
+    if (elem != NULL)
+    {
+        ++melyseg;
+        
+        if (melyseg > max_melyseg)
+            max_melyseg = melyseg;
+            
+        kiir (elem->jobb_egy);
+        kiir (elem->bal_nulla);
+
+        for (int i = 0; i < melyseg; ++i)
+            printf ("---");
+        printf ("%c(%d)\n", elem->ertek < 2 ? '0' + elem->ertek : elem->ertek,
+                melyseg);
+
+        --melyseg;
+    }
+}
+]]></programlisting>
     <para><link xlink:href="http://tananyag.ntszki.hu/BajanF/11-B/fabejaras.pdf">forrás</link></para>
     </section>        
                         
@@ -419,7 +548,8 @@ szabadit (BINFA_PTR elem)
         <para>
          Megoldás forrása: <link xlink:href="https://raw.githubusercontent.com/ghjbku/DE/cpp/z3a7(1).cpp">a nagy forráskód miatt csak linkként jelenítem meg</link>                
      </para>
-     <programlisting language="c++"><![CDATA[protected:			// ha esetleg egyszer majd kiterjesztjük az osztályt, mert
+     <programlisting language="c++"><![CDATA[
+     protected:			// ha esetleg egyszer majd kiterjesztjük az osztályt, mert
     // akarunk benne valami újdonságot csinálni, vagy meglévő tevékenységet máshogy... stb.
     // akkor ezek látszanak majd a gyerek osztályban is
 
@@ -433,11 +563,16 @@ szabadit (BINFA_PTR elem)
     void rszoras (Csomopont * elem);
 
 };]]></programlisting>
+<para>
+Amint láthatjuk, a binfa osztály protected ágában megtalálható a Csomopont típusú gyoker változó.
+a fa objektum jelképezi a tree-t, míg a node-t jelképezi a Csomopont.
+</para>
     </section>        
                 
     <section>
         <title>Mutató a gyökér</title>
         <para>
+          <command>Tutorálva Nagy Krisztián által.</command>
             Írd át az előző forrást, hogy a gyökér csomópont ne kompozícióban, csak aggregációban legyen a 
             fával!
         </para>
@@ -456,6 +591,14 @@ szabadit (BINFA_PTR elem)
         szabadit (gyoker->nullasGyermek ());
 	delete gyoker;
     }]]></programlisting>
+    <para>Ehhez szükségünk lesz arra, hogy az előző feladatban megadott <command>Csomopont gyoker;</command>
+    sort átírjuk <command>Csomopont gyoker*;</command>-ra</para>
+    <para>Viszont mivel mutató lett belőle, valahol inicializálnunk kell a változót.
+    Ezt jelenti a(z) <command><![CDATA[LZWBinFa ():fa (gyoker = new Csomopont('/'))]]></command> sor</para>
+    <para>Át kell írnunk továbbá a programban található <command>gyoker</command> változó hívásokat <command>gyoker*</command>-ra.</para>
+    <para>Viszont ez még mindíg nem elég, hiszen a memóriafoglalást követően valahogy fel is kell őket szabadítani.
+  És itt jön be az ~LZWBinFa destruktor.  
+  </para>
     </section>                     
 
     <section>
@@ -470,16 +613,35 @@ szabadit (BINFA_PTR elem)
         <para>
             Megoldás forrása:  
         </para>
-        <programlisting language="c++"><![CDATA[LZWBinFa ( LZWBinFa && regi ) {
-          std::cout << "LZWBinFa move ctor" << std::endl;
+        <programlisting language="c++"><![CDATA[
+LZWBinFa ( LZWBinFa && regi ){
+    std::cout << "LZWBinFa move ctor" << std::endl;
 
-          gyoker.ujEgyesGyermek ( regi.gyoker.egyesGyermek() );
-          gyoker.ujNullasGyermek ( regi.gyoker.nullasGyermek() );
+    gyoker.ujEgyesGyermek ( regi.gyoker.egyesGyermek() );
+    gyoker.ujNullasGyermek ( regi.gyoker.nullasGyermek() );
 
-          regi.gyoker.ujEgyesGyermek ( nullptr );
-          regi.gyoker.ujNullasGyermek ( nullptr );
+    regi.gyoker.ujEgyesGyermek ( nullptr );
+    regi.gyoker.ujNullasGyermek ( nullptr );
 
-     }]]></programlisting>
+}
+            
+LZWBinFa& operator = (LZWBinFa &amp;&amp; regi){
+    if (this == &regi)
+        return *this;
+
+    gyoker.ujEgyesGyermek ( regi.gyoker.egyesGyermek() );
+    gyoker.ujNullasGyermek ( regi.gyoker.nullasGyermek() );
+
+    regi.gyoker.ujEgyesGyermek ( nullptr );
+    regi.gyoker.ujNullasGyermek ( nullptr );
+
+    return *this;
+}
+
+     ]]>
+</programlisting>
+<para>A fent található két függvény teszi lehetővé az objektumok mozgatását. </para>
+<para>Az első függvény a mozgatás, a második pedig az értékadás.</para>
     </section>                     
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                
