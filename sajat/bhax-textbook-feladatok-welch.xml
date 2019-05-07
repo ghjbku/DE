@@ -16,7 +16,7 @@
         <para>
             Megoldás videó:
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása Java-ban:                
         </para>
         <programlisting language="java"><![CDATA[
@@ -70,7 +70,7 @@
     }
     
 }]]></programlisting>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása C++-ban:                
         </para>
         <programlisting language="c++"><![CDATA[#include "std_lib_facilities.h" 
@@ -139,7 +139,7 @@ return 0;
         <para>
             Megoldás videó:
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása: </para>
             <programlisting language="c"><![CDATA[// z.c
 //
@@ -579,7 +579,7 @@ a fa objektum jelképezi a tree-t, míg a node-t jelképezi a Csomopont.
         <para>
             Megoldás videó: 
         </para>
-        <para>
+        <para><command>A forráskód-részlet Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása:  <link xlink:href="z3a7_gyoker.cpp"></link>
         </para>
         <programlisting language="c++"><![CDATA[ LZWBinFa ():fa (gyoker = new Csomopont('/'))
@@ -603,45 +603,239 @@ a fa objektum jelképezi a tree-t, míg a node-t jelképezi a Csomopont.
 
     <section>
         <title>Mozgató szemantika</title>
-        <para>
+        <para><command>Tutorált Gila Attila Zoltán</command>
             Írj az előző programhoz mozgató konstruktort és értékadást, a mozgató konstruktor legyen a mozgató
             értékadásra alapozva!
         </para>
         <para>
             Megoldás videó: 
         </para>
-        <para>
+        <para><command>A forráskód Tamás Racs tulajdonában áll.</command>
             Megoldás forrása:  
+            std::move parancs API: <link xlink:href="https://en.cppreference.com/w/cpp/utility/move"></link>
         </para>
         <programlisting language="c++"><![CDATA[
-LZWBinFa ( LZWBinFa && regi ){
-    std::cout << "LZWBinFa move ctor" << std::endl;
-
-    gyoker.ujEgyesGyermek ( regi.gyoker.egyesGyermek() );
-    gyoker.ujNullasGyermek ( regi.gyoker.nullasGyermek() );
-
-    regi.gyoker.ujEgyesGyermek ( nullptr );
-    regi.gyoker.ujNullasGyermek ( nullptr );
-
+#include <iostream>
+#include <fstream>
+class LZWBinaryTree
+{
+public:
+LZWBinaryTree ()
+{
+currentNode = root;
 }
-            
-LZWBinFa& operator = (LZWBinFa &amp;&amp; regi){
-    if (this == &regi)
-        return *this;
-
-    gyoker.ujEgyesGyermek ( regi.gyoker.egyesGyermek() );
-    gyoker.ujNullasGyermek ( regi.gyoker.nullasGyermek() );
-
-    regi.gyoker.ujEgyesGyermek ( nullptr );
-    regi.gyoker.ujNullasGyermek ( nullptr );
-
-    return *this;
+~LZWBinaryTree ()
+{
+free (root);
+}
+LZWBinaryTree (LZWBinaryTree&& other)
+{
+root = nullptr;
+*this = std::move(other);
+}
+LZWBinaryTree& operator=(LZWBinaryTree&& other)
+{
+std::swap(root, other.root);
+return *this;
+}
+void operator<< (char b)
+{
+if (b == ’0’)
+{
+if (!currentNode->getLeftChild ())
+{
+Node *uj = new Node (’0’);
+currentNode->newLeftChild (uj);
+currentNode = root;
+}
+else
+{
+currentNode = currentNode->getLeftChild ();
+}
+}
+else
+{
+if (!currentNode->getRightChild ())
+{
+Node *uj = new Node (’1’);
+currentNode->newRightChild (uj);
+currentNode = root;
+}
+else
+{
+currentNode = currentNode->getRightChild ();
+}
+}
+}
+void print (void)
+{
+depth = 0;
+print (root, std::cout);
 }
 
-     ]]>
+int getDepth (void);
+friend std::ostream & operator<< (std::ostream & os, LZWBinaryTree & bf ←-
+)
+{
+bf.print (os);
+return os;
+}
+void print (std::ostream & os)
+{
+depth = 0;
+print (root, os);
+}
+private:
+class Node
+{
+public:
+Node (char b = ’/’):value (b), leftChild (0), rightChild (0)
+{
+};
+~Node ()
+{
+};
+Node *getLeftChild () const
+{
+return leftChild;
+}
+Node *getRightChild () const
+{
+return rightChild;
+}
+void newLeftChild (Node * gy)
+{
+leftChild = gy;
+}
+void newRightChild (Node * gy)
+{
+rightChild = gy;
+}
+char getValue () const
+{
+return value;
+}
+private:
+char value;
+Node *leftChild;
+Node *rightChild;
+Node (const Node &);
+Node & operator= (const Node &);
+};
+Node *currentNode;
+int depth;
+LZWBinaryTree (const LZWBinaryTree &);
+LZWBinaryTree & operator= (const LZWBinaryTree &);
+void print (Node * n, std::ostream & os)
+{
+if (n != NULL)
+{
+++depth;
+print (n->getLeftChild (), os);
+for (int i = 0; i < depth; ++i)
+os << "---";
+os << n->getValue () << "(" << depth << ")" << std::endl;
+print (n->getRightChild (), os);
+--depth;
+}
+}
+void free (Node * n)
+{
+if (n != NULL)
+{
+free (n->getLeftChild ());
+free (n->getRightChild ());
+delete n;
+}
+}
+protected:
+Node* root = new Node();
+int maxDepth;
+void getDepthRec (Node * n);
+};
+int LZWBinaryTree::getDepth (void)
+{
+depth = maxDepth = 0;
+getDepthRec (root);
+return maxDepth;
+}
+void LZWBinaryTree::getDepthRec (Node * n)
+{
+if (n != NULL)
+{
+++depth;
+if (depth > maxDepth)
+maxDepth = depth;
+getDepthRec (n->getRightChild ());
+getDepthRec (n->getLeftChild ());
+--depth;
+}
+}
+void usage (void)
+{
+std::cout << "Usage: lzwtree in_file" << std::endl;
+}
+int main (int argc, char *argv[])
+{
+if (argc != 2)
+{
+usage ();
+return -1;
+}
+char *inFile = *++argv;
+std::fstream beFile (inFile, std::ios_base::in);
+if (!beFile)
+{
+std::cout << inFile << "Nem létezik a bemeneti fájl!" << std::endl;
+usage ();
+return -3;
+}
+char b;
+LZWBinaryTree binFa;
+while (beFile.read ((char *) &b, sizeof (char)))
+{
+if(b == ’0’)
+{
+binFa << b;
+}
+else if(b == ’1’)
+{
+binFa << b;
+}
+}
+std::cout << "Eredeti fa:\n\n";
+std::cout << binFa;
+std::cout << "depth = " << binFa.getDepth () << std::endl;
+LZWBinaryTree binFa2 = std::move(binFa);
+std::cout << "\nEredeti fa mozgatás után:\n";
+std::cout << binFa;
+std::cout << "depth = " << binFa.getDepth () << std::endl;
+std::cout << "\nMozgatással létrejött fa:\n\n";
+std::cout << binFa2;
+std::cout << "depth = " << binFa2.getDepth () << std::endl;
+beFile.close ();
+return 0;
+}
+]]>
 </programlisting>
-<para>A fent található két függvény teszi lehetővé az objektumok mozgatását. </para>
-<para>Az első függvény a mozgatás, a második pedig az értékadás.</para>
+<para>A lent található két függvény teszi lehetővé az objektumok mozgatását. </para>
+<para></para>
+ <programlisting language="c++"><![CDATA[
+LZWBinaryTree (LZWBinaryTree&& other)
+{
+root = nullptr;
+*this = std::move(other);
+}]]></programlisting>
+<para>Az első függvényben </para>
+ <programlisting language="c++">
+ <![CDATA[
+LZWBinaryTree& operator=(LZWBinaryTree&& other)
+{
+std::swap(root, other.root);
+return *this;
+}]]>
+ </programlisting>
+
     </section>                     
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                

@@ -121,7 +121,7 @@ return 0;
         <para>
             Megoldás videó: <link xlink:href="https://youtu.be/9KnMqrkj_kU">https://youtu.be/9KnMqrkj_kU</link> (15:01-től).
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása: <link xlink:href="Chomsky/realnumber.l">
                 <filename>bhax/thematic_tutorials/bhax_textbook_IgyNeveldaProgramozod/Chomsky/realnumber.l</filename>
             </link> 
@@ -168,7 +168,7 @@ main ()
         <para>
             Megoldás videó: <link xlink:href="https://youtu.be/06C_PqDpD_k">https://youtu.be/06C_PqDpD_k</link>
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása: <link xlink:href="Chomsky/l337d1c7.l">
                 <filename>bhax/thematic_tutorials/bhax_textbook_IgyNeveldaProgramozod/Chomsky/l337d1c7.l</filename>
             </link>  
@@ -473,7 +473,7 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         <para>
             Megoldás videó: 
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása:  
         </para>
         <para>

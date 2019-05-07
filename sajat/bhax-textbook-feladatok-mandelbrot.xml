@@ -13,7 +13,7 @@
         <para>
             Megoldás videó: <link xlink:href="https://youtu.be/gvaqijHlRUs">https://youtu.be/gvaqijHlRUs</link>
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása:                
  <link xlink:href="../mandelpngt.c++">
                 <filename>/mandelpngt.c++</filename>
@@ -105,7 +105,7 @@
         <para>
             Megoldás videó: <link xlink:href="https://youtu.be/gvaqijHlRUs">https://youtu.be/gvaqijHlRUs</link>
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása:                
         </para>
         <para>        
@@ -314,7 +314,7 @@ kep.set_pixel ( k, j,
         <para>
             Megoldás videó: <link xlink:href="https://youtu.be/IJMbgRzY76E">https://youtu.be/IJMbgRzY76E</link>
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf</link>
         </para>
         <para>
@@ -543,7 +543,7 @@ main ( int argc, char *argv[] )
         <para>
             Megoldás videó: <link xlink:href=""></link>
             Illetve <link xlink:href="https://bhaxor.blog.hu/2018/09/02/ismerkedes_a_mandelbrot_halmazzal">https://bhaxor.blog.hu/2018/09/02/ismerkedes_a_mandelbrot_halmazzal</link>.        </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása: <link xlink:href="https://github.com/ghjbku/DE/tree/master/sajat/biomoprhs"></link>
         </para>
         <para>Ezen feladat megoldása hihetetlenül sokáig tartott, és ez alatt nem a program megírását értem, hanem annak lefordítását.

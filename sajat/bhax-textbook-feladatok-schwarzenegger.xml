@@ -13,7 +13,7 @@
         <para>
             Megoldás videó:
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása:                
         </para>
         <programlisting language="python">
@@ -200,7 +200,7 @@ def evaluation(logits, labels):
         <para>
             Megoldás videó:
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása:                
         </para>
               <programlisting language="python">

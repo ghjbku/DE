@@ -89,7 +89,7 @@ int asd=0;
         <para>
             Megoldás videó:
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása:  tegyük fel, hogy akkora haxorok vagyunk, hogy meg tudjuk írni a <function>Lefagy</function>
             függvényt, amely tetszőleges programról el tudja dönteni, hogy van-e benne vlgtelen ciklus:              
         </para>
@@ -210,6 +210,7 @@ return 0;
     <section>
         <title>Labdapattogás</title>
         <para>
+        <command>Tutoráltam:Nagy Krisztinánt</command>
             Először if-ekkel, majd bármiféle logikai utasítás vagy kifejezés
             nasználata nélkül írj egy olyan programot, ami egy labdát pattogtat a karakteres konzolon! (Hogy mit értek
             pattogtatás alatt, alább láthatod a videókon.)
@@ -281,6 +282,7 @@ return 0;
             Megoldás videó: <link xlink:href=""></link>
         </para>
         <para>
+        <command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása: <link xlink:href="https://github.com/ghjbku/DE/blob/cpp/bitshift.cpp"></link>
         </para>
 		<para>A feladat megoldása C++ nyelven történt, viszont C-ben is hasonló módon kell megoldani a problémát.
@@ -322,6 +324,7 @@ A C megoldás BogoMIPS-el: <link xlink:href="https://github.com/ghjbku/DE/blob/m
             Megoldás videó: <link xlink:href=""></link>
         </para>
         <para>
+        <command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása C++-ban: <link xlink:href="https://github.com/ghjbku/DE/blob/cpp/bearazas.cpp"></link>
             és C-ben: <link xlink:href="https://github.com/ghjbku/DE/blob/master/c%20cuccok/bearaz.c"></link>
         </para>
@@ -466,7 +469,7 @@ return 0;
         <para>
             Megoldás videó: <link xlink:href="https://youtu.be/xbYhp9G6VqQ">https://youtu.be/xbYhp9G6VqQ</link>
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Primek_R">https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Primek_R</link>
         </para>
         <programlisting language="r"><![CDATA[library(matlab)
@@ -532,7 +535,7 @@ majd végezetül visszaadjuk a return()-ben a reciprokértékek összegét.</par
         <para>
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2019/01/03/erdos_pal_mit_keresett_a_nagykonyvben_a_monty_hall-paradoxon_kapcsan">https://bhaxor.blog.hu/2019/01/03/erdos_pal_mit_keresett_a_nagykonyvben_a_monty_hall-paradoxon_kapcsan</link>
         </para>
-        <para>
+        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/MontyHall_R">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/MontyHall_R</link>
         </para>
         <para><programlisting language="r">
