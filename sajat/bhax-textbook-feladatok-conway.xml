@@ -139,7 +139,15 @@ int main ( int argc, char *argv[] )
             A szimulációhoz szükségünk van a QT5-ös verziójára.
         </para> 
         <para>
-        
+        Ez a forráskód a grafikus megjelenítési beállításokat és a hangyák tulajdonságait tartalmazza:
+        A <command>QCommandLineOption szeles_opt</command> rész az ablak szélességét,
+        A <command>QCommandLineOption magas_opt</command> pedig a magasságát.
+          A <command>QCommandLineOption hangyaszam_opt</command>, <command>QCommandLineOption sebesseg_opt</command>,
+          <command>QCommandLineOption parolgas_opt</command>, <command>QCommandLineOption feromon_opt</command> és
+           <command>QCommandLineOption szomszed_opt</command>
+          sorok a hangyák tulajdonságait szabályozzák.
+        A <command>parser</command> parancs adja hozzá az ablakot a kerethez.     
+        A <command>w.show();</command> parancs jeleníti meg az ablakot, és a végén a program visszatér az <command>a.exec()</command> objektummal.
         </para>           
     </section>        
     <section>
@@ -441,7 +449,7 @@ public void siklóKilövő(boolean [][] rács, int x, int y) {
             A Java kompatibilitása miatt viszont szinte bárhol lefuttatható a program, ahol jvm található.
             A programban megtalálható pár billentyű funkció is, melyekkel a program működését befolyásolhatjuk.
             Az <command>s</command> betű megállítja a programot, a <command>k</command> az ablakot kicsinyíti, míg az <command>n</command> nagyítja.
-            VAn még a <command>g és az l</command>, ezek gyorsítják és lassítják a programot.
+            van még a <command>g és az l</command>, ezek gyorsítják és lassítják a programot.
         </para>            
     </section>        
     <section>

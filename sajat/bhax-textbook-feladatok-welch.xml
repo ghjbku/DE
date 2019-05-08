@@ -818,15 +818,19 @@ return 0;
 }
 ]]>
 </programlisting>
-<para>A lent található két függvény teszi lehetővé az objektumok mozgatását. </para>
-<para></para>
+<para>A lent található két függvény teszi lehetővé az objektumok mozgatását.</para>
+<para>Amint láthatjuk, az első sorban a jelenlegi root-ot lecseréli a program nullptr-re, majd 
+a *this, tehát ezen tree értékét egyenlővé teszi az std::move(other) funkció visszatérési értékével.
+Maga a move függvény nem tesz semmit az objektumunkkal, egyszerűen csak a baloldali értékből
+jobboldali értéket készít.</para>
  <programlisting language="c++"><![CDATA[
 LZWBinaryTree (LZWBinaryTree&& other)
 {
 root = nullptr;
 *this = std::move(other);
 }]]></programlisting>
-<para>Az első függvényben </para>
+<para>Majd az std::swap függvény segítségével kicseréljük a két objektum memóriacímét,
+végül visszatérési értékként a *this pointert adjuk meg. </para>
  <programlisting language="c++">
  <![CDATA[
 LZWBinaryTree& operator=(LZWBinaryTree&& other)
