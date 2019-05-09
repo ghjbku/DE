@@ -461,7 +461,7 @@ public void siklóKilövő(boolean [][] rács, int x, int y) {
             Megoldás videó: 
         </para>
         <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
-            Megoldás forrása: <link xlink:href=""></link>               
+            Megoldás forrása: <link xlink:href="eletjatek/main.cpp"></link>               
         </para>
         <figure>
             <title>Az életjáték futás közben</title>
@@ -473,10 +473,134 @@ public void siklóKilövő(boolean [][] rács, int x, int y) {
                     <phrase>A hangyák akcióban</phrase>
                 </textobject>
             </mediaobject>
-        </figure>  
+        </figure>
+        <programlisting language="c++"><![CDATA[//main.cpp tartalma
+#include <QApplication>
+#include "sejtablak.h"
+#include <QDesktopWidget>
+
+int main(int argc, char *argv[])
+{
+  QApplication a(argc, argv);
+  SejtAblak w(100, 75);
+  w.show();
+  
+  return a.exec();
+}
+]]></programlisting>
+<para>
+A main fájl rövid, hiszen csak annyi a dolga, hogy meghívja magát a program-ablakot, melyet meg is tesz ebben a sorban:
+<command>SejtAblak w(100,75);</command> itt a sejtablak osztályt felhasználva készítünk egy w objektumot, melyeknek a 100 szélesség és 75
+magasság paramétereket adjuk meg.
+Majd a következő sorban a w.show(); függvényhívással megjelenítjük azt ablakot.
+</para>
+<programlisting language="c++"><![CDATA[//sejtablak.h tartalma
+#ifndef SEJTABLAK_H
+#define SEJTABLAK_H
+
+#include <QMainWindow>
+#include <QPainter>
+#include "sejtszal.h"
+
+class SejtSzal;
+
+class SejtAblak : public QMainWindow
+{
+  Q_OBJECT
+  
+public:
+  SejtAblak(int szelesseg = 100, int magassag = 75, QWidget *parent = 0);
+
+  ~SejtAblak();
+  // Egy sejt lehet élő
+  static const bool ELO = true;
+  // vagy halott
+  static const bool HALOTT = false;
+  void vissza(int racsIndex);
+  
+protected:
+  // Két rácsot használunk majd, az egyik a sejttár állapotút
+  // a t_n, a másik a t_n+1 időpillanatban jellemzi.
+  bool ***racsok;
+  // Valamelyik rácsra mutat, technikai jellegű, hogy ne kelljen a
+  // [2][][]-ból az első dimenziót használni, mert vagy az egyikre
+  // állítjuk, vagy a másikra.
+  bool **racs;
+  // Megmutatja melyik rács az aktuális: [rácsIndex][][]
+  int racsIndex;
+  // Pixelben egy cella adatai.
+  int cellaSzelesseg;
+  int cellaMagassag;
+  
+  int szelesseg;
+  int magassag;    
+  void paintEvent(QPaintEvent*);
+  void siklo(bool **racs, int x, int y);
+  void sikloKilovo(bool **racs, int x, int y);
+  
+private:
+  SejtSzal* eletjatek;
+  
+};
+
+#endif // SEJTABLAK_H
+]]></programlisting>
+ <para>Ha betekintünk a SejtAblak.h fájlba, láthatjuk magát az osztályt, amit a main.cpp-ben felhasználtunk.
+ Az osztály public ágában találhatunk egy konstruktort, egy destruktort, és két bool típusú változót, 
+ amely a sejtek állapotát szimbolizálja, halott, vagy él.
+ A protected ágban megjelenik a ***racsok és a **racs pointer objektumok.
+ Itt inicializáljuk a paintEvent funkciót és a két fő objektumunkat is, a siklót és a siklókilövőt.
+ Ez utóbbi kettő a **racs pointert használja argumentumként, míg a paintEvent a QT-be integrált QPaintEvent osztályban található tagot használja.
+ A fájl elején láthatunk még egy header fájlt, a sejtszal.h-t.
+
+ </para>
+ <programlisting language="c++"><![CDATA[//sejtszal.h tartalma
+ #ifndef SEJTSZAL_H
+#define SEJTSZAL_H
+
+#include <QThread>
+#include "sejtablak.h"
+
+class SejtAblak;
+
+class SejtSzal : public QThread
+{
+    Q_OBJECT
+
+public:
+    SejtSzal(bool ***racsok, int szelesseg, int magassag,
+             int varakozas, SejtAblak *sejtAblak);
+    ~SejtSzal();
+    void run();
+
+protected:
+    bool ***racsok;
+    int szelesseg, magassag;
+    // Megmutatja melyik rács az aktuális: [rácsIndex][][]
+    int racsIndex;
+    // A sejttár két egymást követő t_n és t_n+1 diszkrét időpillanata
+    // közötti valós idő.
+    int varakozas;
+    void idoFejlodes();
+    int szomszedokSzama(bool **racs,
+                        int sor, int oszlop, bool allapot);
+    SejtAblak* sejtAblak;
+
+};
+
+#endif // SEJTSZAL_H
+]]></programlisting>
+<para>
+a SejtSzal egy paraméterezett default konstruktor, mely bekéri a  racsok pointer-t, a szélességet, a magasságot,
+a várakozást és egy sejtAblak típusú sejtablak pointert.
+Alatta megtalálható a default destruktor az osztályhoz.
+A protected ágban is láthatjuk a racsok pointert, a szelesseg és magassag változókat inicializálódni.
+Itt deklaráljuk a várakozást, az idoFejlodes funkciót és a szomszedokSzama funkciót, legvégül pedig 
+a sejtAblak* sejtAblak objektum is itt jelenik meg.
+</para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
-            A QT miatt a program forráskódja több fájlra eshet szét, melyet <command>make</command> parancssal tudunk egy futtatható fájl-á konvertálni.
+            A program forráskódja több fájlra esik szét, melyet <command>make</command> parancssal tudunk egy futtatható fájl-á konvertálni.
              Ez az életjáték a siklóKilövő szimulációt valósítja meg.
 
         </para>            
