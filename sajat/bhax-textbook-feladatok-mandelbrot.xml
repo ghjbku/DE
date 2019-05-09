@@ -102,7 +102,7 @@
         <para>
             Írj olyan C++ programot, amely kiszámolja a Mandelbrot halmazt!                     
         </para>
-        <para>
+        <para><command>Tutoráltam Zsolt Schachinger-t</command>
             Megoldás videó: <link xlink:href="https://youtu.be/gvaqijHlRUs">https://youtu.be/gvaqijHlRUs</link>
         </para>
         <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
