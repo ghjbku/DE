@@ -135,6 +135,7 @@ return 0;
         <title>LZW</title>
         <para>
             Valósítsd meg C-ben az LZW algoritmus fa-építését!
+            <command>Tutorált benne: Nagy Laszló Mihály</command>
         </para>
         <para>
             Megoldás videó:

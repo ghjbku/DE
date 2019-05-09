@@ -13,7 +13,7 @@
         <para>
             Megoldás videó:
         </para>
-        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
+        <para>
             Megoldás forrása:                
         </para>
         <programlisting language="python">
@@ -171,8 +171,18 @@ def evaluation(logits, labels):
         <para>
             Tanulságok, tapasztalatok, magyarázat...
             Ez a program egy számítógépet betanító program, futtatásához a TensorFlow szükséges.
-        Alacsony felbontású képeket analízáltat a számítógéppel, majd ezen képek alapján megpróbál egy másik képről hasonlóságot találni, éđ kitaláni, hogy mi látható a képen.
-
+        Alacsony felbontású képeket analízáltat a számítógéppel, majd ezen képek alapján megpróbál egy másik képről hasonlóságot találni, és kitaláni, hogy mi látható a képen.
+Itt konkrétan kézzel írt számokról dönti el, hogy a képen melyik szám látható.
+A betanítási folyamat hossza függ a program bonyolultságától, de ez a program egyszerűnek számít, tehát elég könnyen 90% fölé mehet a pontossága, és a betanítási idő is rövid.
+a <command>def</command> kulcsszóval definiálhatunk függvényeket.
+Az első ilyen függvény az "inference", amely három argumentumot vár:
+az <command>images</command>, <command>hidden1_units</command> és <command>hidden2_units</command> argumentumokat.  
+Az első a képek helyét jelenti az input() függvényből, a második és a harmadik pedig a rejtett layerek méretét jelenti.
+A függvényünk visszatérési értéke a softmax_linear, ez a kiszámolt "logit"-eket tárolja.
+        </para>
+        <para>A második függvény a loss(logits,labels), ez a logitekből és cimkékből kiszámítja a veszteséget.
+        A harmadik függvény felel a betanításért, ez a training(loss,learning_rate).
+        Az utolsó függvény az evaluation, amely visszaadja, hogy milyen sikerességgel találta el a program a helyes számot.
         </para>
     </section>        
 
@@ -200,7 +210,7 @@ def evaluation(logits, labels):
         <para>
             Megoldás videó:
         </para>
-        <para><command>A forráskód Bátfai Norbert tulajdonában áll.</command>
+        <para>
             Megoldás forrása:                
         </para>
               <programlisting language="python">
@@ -385,6 +395,20 @@ tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)]]>
             A végén százalékos formában kiírja a pontosságot.
             Ez kissebb erőforrásigényű programoknál 90+% fölé mehet, amely az embernél jobb hatékonyságot jelent.
         </para>
+        <para>A legelső függvényünk a deepnn(x), ez a függvény egy gráfot épít ki a mély hálónknak,amely a számokat osztályozza.
+        az X argumentum a dimenziók száma.
+        Visszatérési értékként az y_conv ls a keep_prob térnek vissza.
+        Az y változó a szám alakját adja vissza, 0 és 9 között változhat ez az érték.
+        </para>
+        <para>
+        Következő funkció a conv2d(x,W).
+        Ez egy 2d konvulációs réteget ad vissza.
+        </para>
+        <para>az ez alatt található funkció a max_pool_2x2, ez a függvény csökkenti a mintákat 2x.
+        Ezután jön a weight_variable(shape) függvény, amely a nevéből is kideríthetően súlyozást ad a képhez, egy shape alapján.
+        Végül a bias_variable, amely ugyancsak a shape alapján állít be bias-t. </para>
+        <para>A legvégén található egy main() függvény, amely először importálja az adatokat,majd elkészíti a modellt, a veszteséget kiszámítja és végül felépíti a gráfot.
+        </para>
     </section>        
 
     <section>
@@ -399,7 +423,7 @@ tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)]]>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
-            nem működik a malmo tört minecraft-on
+            Sajnos nem volt alkalmam beszerezni a játékot.
         </para>
     </section>       
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

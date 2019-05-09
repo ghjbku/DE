@@ -115,7 +115,7 @@ Egy fordítóprogram tetszőleges nyelvről tetszőleges nyelvre fordít.Amíg e
         <command>operátor túlterhelés</command></para>
         <para>A c++ nyelvben néhány új operátor lett bevezetve a C-hez képest.
         Ilyen például a hatókör operátor(::), a pointer-tag ooperátor(.* és ->*).
-        A többi operátorról később teszek említést.</para>
+        </para>
         <para></para>
     </section>        
 </chapter>                        
