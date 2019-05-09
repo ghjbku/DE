@@ -24,6 +24,53 @@ A forráskódok nyelvtani szabályi a szintaktikai szabályok, míg a jelentésb
 Ezeket a kódokat interpreterrel, vagy fordítóprogrammal gépi kóddá kell konvertálni, hogy a processor értelmezni tudja.
 Egy fordítóprogram tetszőleges nyelvről tetszőleges nyelvre fordít.Amíg ez az egész kódból egy tárgyprogramot készít, addig az interpreter értelezi és rögtön lefuttatja a kódot, programfájl nélkül.
 </para>
+<para>
+<command>Kifejezések:</command>
+Két részből állnak, értékből és típusból.
+Egy kifejezés ezekből az összetevőkből áll:</para>
+<programlisting>
+<![CDATA[-operandus: ez egy literál, változó vagy konstans, ez a kifejezés "értéke".
+-operátor: ezek a műveleti jelek, aritmetikai/logikai műveletek végrehajtására.
+-kerek zárójelek: a műveleti sorrend befolyásolására.]]>
+</programlisting>
+<para>
+Léteznek konstans kifejezések, ezek értéke fordításkor eldől, a program futása közben nem változik.
+</para>
+<para>
+<command>Utasítások:</command></para><programlisting>
+értékadó utasítás: Ezen típusú utasítás a változók értékét módosítja a program futása során.
+Üres utasítás: ilyenkor a processor egy üres gépi utasítást hajt végre.
+Ugró utasítás: A program egyik soráról a másikra ugrik a vezérlés, általános alak a <command>GOTO</command>.
+Elágazásos utasítás(kétfelé ágazás utasítás): A program egy pontján két lehetőség közül választ a program egy feltétel alapján.
+Formája: if...then...else...
+Többirányú elágazás:A program egy pontján meghatározott számú opciókból kiválaszt egyet, amelyet végrehajt.
+A választást egy kifejezés értéke szerint határozzuk meg.
+Formája: switch(kifejezés){
+case egész_kifejezés: [tevékenység]
+case egész_kifejezés: [tevékenység]
+default: tevékenység };
+A case-ágak értékei különbözzenek.
+Ha a case-ágak közül egyik sem egyezik a feltétellel, akkor a default tevékenység hajtódik végre.
+</programlisting>
+<para>
+<command>Blokk:</command>
+Egy programegység egy másik program belsejében.Eljárásorientált nyelvekben csak a <command>hatáskör</command>ben van szerepe.
+Kétféle hatáskörkezelés létezik, statikus és dinamikus.
+Előbbi a fordítási időben valósul meg, a fordítóprogram által.
+A hatáskör csak befelé terjed, kintről nem látni, ha a változót látjuk kintről, akkor az globális változó.
+A dinamikus hatáskörkezelés futási idő közben zajlik le, azt a rendszer végzi.
+Ha szabad nevet talál, a hívási láncon keresztül lépked felfelé, amíg a nevet meg nem találja.
+Az Eljárásorientált nyelvek a statikus kezelést használják.
+
+</para>
+<para>
+<command>I/O</command>:
+A programnyelvek azon eszközrendszere, amely a perifériákkal való kommunikációt hajtja végre, az operatív tárból küld, vagy vár adatokat.
+Az I/O középpontja az állomány.
+Ez lehet logikai és fizikai.
+Az előbbi egy olyan programozási eszköz, amely névvel rendelkezik, és állományjellemzői attribútumként vannak jelen.
+Fizikai állománynak pedig a hétköznapi, perifériákon megjelenő, adatokat tároló vagy tartalmazó állományt nevezzük.
+</para>
 
     </section>        
     <section>
@@ -91,6 +138,22 @@ Egy fordítóprogram tetszőleges nyelvről tetszőleges nyelvre fordít.Amíg e
         <command>Makrók: </command>A #define paranccsal nem csak Szimbolikus állandók hozhatók létre.
         Segítségükkel makrókat is inicializálhatunk, tehát akár egy egész függvényt is egy szóval behelyettesíthetünk.
         Amikor ez a szó idézőjel nélkül, egymagában megjelenik a kódban, akkor a helyettesítési értéke illesztődik be a kódba.
+
+        </para>
+        <para>
+        <command>Pointerek:</command>
+        Ezek olyan változók, amelyek más változók memóriacímét tárolják.
+        C-ben gyakran használják a mutatókat, mivel hatékonyság és tömörség növelő hatása van.
+        Ha van két változónk, <![CDATA[char c és char* p, és p = &c; a &-jel (egyoperandusú operátor) hozzárendeli a p-hez a c címét.
+        Ezt úgy szoktuk mondani, hogy a p c-re mutat.]]> Ez az operátor csak változókra és tömbelemekre használható. 
+        
+        </para>
+        <para>
+        <command>Parancssori argumentumok:</command> 
+        Lehetőségünk van argumentumok átadására a programunknak a terminálról, ezek az argumentumok 
+        a main() függvény *argc* és *argv[]* tagjai.
+        az argc egy számot tartalmaz, ez a szám az argumentumok száma.
+        Az argv[] tömb pedig az összes argumentumot tartalmazza, argv[0] a program neve.
 
         </para>
     </section>        
