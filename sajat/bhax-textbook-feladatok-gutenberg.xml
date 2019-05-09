@@ -37,8 +37,62 @@ Egy fordítóprogram tetszőleges nyelvről tetszőleges nyelvre fordít.Amíg e
         <para>
             A C nyelvben kevés adattípust találhatunk<command>(char, int, float, double)</command>,
              de hozzájuk egyfajta minősítők is tartozhatnak:(short(16 bit), long(32 bit) int).
-            Különböző hosszúságú egészeket írnak le.
+            ezek Különböző hosszúságú egészeket írnak le.
+            Az ún. "bűvös számok" elkerülésére használhatjuk a #define parancsot, amellyel Szimbolikus állandókat hozhatunk létre.
+            Használata: #define név behelyettesítendő-szöveg-vagy-szám
        </para>
+       <para>
+       <command>változóérvényességi tartomány:</command>
+       A változók deklarálása általában lokális módon történik,ezek a függvényen kívül nem látszanak, a másik függvény/osztály nem fér hozzájuk.
+       Ha azt szeretnénk, hogy a változónk látható legyen a függvényen kívül is, szükségünk lesz a változó elé beírni egy <command>extern</command>
+       szót, ezzel globális változóvá téve az eredetileg lokális változót.
+       </para>
+       <para>
+       <command>Változók deklarálása:</command>
+       A változók deklarálása 3 féle képpen történhet, lista szerint,szétválasztva, vagy értékadással.
+       </para>
+       <para>Lista például:<![CDATA[char c,t[5];
+       int i,g,k;]]> 
+       </para>
+        <para>
+        szétválasztva: char c; char t[5];int i; int g; int k;
+        </para>
+        <para>értékadással: char c = 'a'; int i=0;</para>
+        <para>Minden változó elé kitehetünk egy const minsősítőt, ha azt szeretnénk, hogy 
+        a változó értékét ne lehessen megváltoztatni.</para>
+        <para>
+        <command>Típuskonverzió:</command>
+        atoi függvény, a char típusú változók értékét integerré konvertálja.
+        ASCII karakterkészlet esetén használható a lower() függvény, ami a nagybetűket kisbetűkké alakítja.
+        </para><para><command>Bitenkénti operátorok:</command>
+        A C nyelvben 6 olyan operátor található, amelyet bitenkénti műveletekre használhatunk.
+        Ezek az operátorok csak char,short,int,long, és ezek előjeles/előjel nélküli formájára használhatóak.
+
+        </para>
+        <programlisting><![CDATA[&     bitenkénti ÉS-kapcsolat
+|     bitenkénti megengedő (inkluzív) VAGY-kapcsolat
+^     bitenkénti kizáró (exkluzív) VAGY-kapcsolat
+<<    balra léptetés
+>>    jobbra léptetés
+~     egyes komplemens képzés (unáris)]]></programlisting>
+        <para><command>Regiszter változó:</command>
+        Ezen fajta deklaráció a fordítóprogrammal közli, hogy az adott változóra gyakran lesz szükségünk, ezért
+        regiszterbe helyeztessük, ezzel meggyorsítva a működést, és kissebb méretet kapunk.
+        A fordítóprogram nem köteles ezt a kérést teljesíteni, figyelmen kívül is hagyhatja.
+        deklarációs forma: register int c; register char g;
+        </para>
+        <para>
+        <command>Rekurzivitás:</command>
+        A függvények rekurzívan hívhatják önmagukat, ilyenkor az automatikus változók értékei újramásolódnak az új híváshoz.
+        Ezek az értékek egymástól függetlenül léteznek, nincs hatásuk egymásra.
+
+        </para>
+        <para>
+        <command>Makrók: </command>A #define paranccsal nem csak Szimbolikus állandók hozhatók létre.
+        Segítségükkel makrókat is inicializálhatunk, tehát akár egy egész függvényt is egy szóval behelyettesíthetünk.
+        Amikor ez a szó idézőjel nélkül, egymagában megjelenik a kódban, akkor a helyettesítési értéke illesztődik be a kódba.
+
+        </para>
     </section>        
     <section>
         <title>Programozás</title>
