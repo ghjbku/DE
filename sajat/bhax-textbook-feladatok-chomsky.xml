@@ -20,7 +20,7 @@
             <title>Az <type> átváltó</type> Turing gép</title>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="elmelet/unar_dec.png" scale="70" />
+                    <imagedata fileref="elmélet/unar_dec.png" scale="70" />
                 </imageobject>
                 <textobject>
                     <phrase>Az <type> átváltó</type> Turing gép</phrase>
