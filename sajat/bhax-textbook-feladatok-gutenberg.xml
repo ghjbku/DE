@@ -28,7 +28,7 @@ Egy fordítóprogram tetszőleges nyelvről tetszőleges nyelvre fordít.Amíg e
 <command>Kifejezések:</command>
 Két részből állnak, értékből és típusból.
 Egy kifejezés ezekből az összetevőkből áll:</para>
-<programlisting>
+<programlisting language="c">
 <![CDATA[-operandus: ez egy literál, változó vagy konstans, ez a kifejezés "értéke".
 -operátor: ezek a műveleti jelek, aritmetikai/logikai műveletek végrehajtására.
 -kerek zárójelek: a műveleti sorrend befolyásolására.]]>
@@ -116,7 +116,7 @@ Fizikai állománynak pedig a hétköznapi, perifériákon megjelenő, adatokat 
         Ezek az operátorok csak char,short,int,long, és ezek előjeles/előjel nélküli formájára használhatóak.
 
         </para>
-        <programlisting><![CDATA[&     bitenkénti ÉS-kapcsolat
+        <programlisting language="c"><![CDATA[&     bitenkénti ÉS-kapcsolat
 |     bitenkénti megengedő (inkluzív) VAGY-kapcsolat
 ^     bitenkénti kizáró (exkluzív) VAGY-kapcsolat
 <<    balra léptetés
