@@ -51,7 +51,7 @@
             <title>A <type> környezetfüggő</type> grammatikák</title>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="elmelet/nyelvosztaly.png" scale="40" />
+                    <imagedata fileref="elmélet/nyelvosztaly.png" scale="40" />
                 </imageobject>
                 <textobject>
                     <phrase>Környezetfüggés két példában</phrase>
