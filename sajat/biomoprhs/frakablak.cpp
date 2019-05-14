@@ -44,12 +44,14 @@
 
 #include "frakablak.h"
 
+double ac,bc,cc,dc;
+
 FrakAblak::FrakAblak(double a, double b, double c, double d,
                      int szelesseg, int iteraciosHatar, QWidget *parent)
                          : QMainWindow(parent)
 {
     setWindowTitle("Biomorfok");
-
+    
     szamitasFut = true;
     x = y = mx = my = 0;
     this->a = a;
@@ -162,6 +164,11 @@ void FrakAblak::keyPressEvent(QKeyEvent *event)
     double dx = (b-a)/szelesseg;
     double dy = (d-c)/magassag;
 
+	ac=a;
+	bc=b;
+	cc=c;
+	dc=d;
+
     double a = this->a+x*dx;
     double b = this->a+x*dx+mx*dx;
     double c = this->d-y*dy-my*dy;
@@ -172,6 +179,39 @@ void FrakAblak::keyPressEvent(QKeyEvent *event)
     this->c = c;
     this->d = d;
 
+   
+	
+
+    delete mandelbrot;
+    mandelbrot = new FrakSzal(a, b, c, d, szelesseg, magassag, iteraciosHatar, this);
+    mandelbrot->start();
+
+    update();
+ }
+else if (event->key() == Qt::Key_Minus)
+ {
+    if(szamitasFut)
+        return;
+
+    szamitasFut = true;
+
+   /* double dx = (b-a)/szelesseg;
+    double dy = (d-c)/magassag;
+
+    double a = this->a+x*dx;
+    double b = this->a+x*dx+mx*dx;
+    double c = this->d-y*dy-my*dy;
+    double d = this->d-y*dy;
+
+    this->a = a;
+    this->b = b;
+    this->c = c;
+    this->d = d;*/
+
+	a=ac;
+	b=bc;
+	c=cc;
+	d=dc;
     delete mandelbrot;
     mandelbrot = new FrakSzal(a, b, c, d, szelesseg, magassag, iteraciosHatar, this);
     mandelbrot->start();
