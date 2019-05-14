@@ -106,7 +106,7 @@ void FrakAblak::mouseMoveEvent(QMouseEvent* event) {
     update();
 }
 
-void FrakAblak::mouseReleaseEvent(QMouseEvent* event) {
+/*void FrakAblak::mouseReleaseEvent(QMouseEvent* event) {
 
     if(szamitasFut)
         return;
@@ -131,7 +131,7 @@ void FrakAblak::mouseReleaseEvent(QMouseEvent* event) {
     mandelbrot->start();
 
     update();
-}
+}*/
 
 void FrakAblak::keyPressEvent(QKeyEvent *event)
 {
@@ -151,6 +151,33 @@ void FrakAblak::keyPressEvent(QKeyEvent *event)
   {
     fraktal->save("mandel_"+QString::number(savec++)+".png");
   }
+
+ else if (event->key() == Qt::Key_Plus)
+ {
+    if(szamitasFut)
+        return;
+
+    szamitasFut = true;
+
+    double dx = (b-a)/szelesseg;
+    double dy = (d-c)/magassag;
+
+    double a = this->a+x*dx;
+    double b = this->a+x*dx+mx*dx;
+    double c = this->d-y*dy-my*dy;
+    double d = this->d-y*dy;
+
+    this->a = a;
+    this->b = b;
+    this->c = c;
+    this->d = d;
+
+    delete mandelbrot;
+    mandelbrot = new FrakSzal(a, b, c, d, szelesseg, magassag, iteraciosHatar, this);
+    mandelbrot->start();
+
+    update();
+ }
 }
 
 
