@@ -1,9 +1,9 @@
 // frakablak.cpp
 //
-// Mandelbrot halmaz nagyÃ­tÃ³
-// ProgramozÃ³ PÃ¡ternoszter
+// Mandelbrot halmaz nagyító
+// Programozó Páternoszter
 //
-// Copyright (C) 2011, BÃ¡tfai Norbert, nbatfai@inf.unideb.hu, nbatfai@gmail.com
+// Copyright (C) 2011, Bátfai Norbert, nbatfai@inf.unideb.hu, nbatfai@gmail.com
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,27 +18,27 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-// Ez a program szabad szoftver; terjeszthetÃµ illetve mÃ³dosÃ­thatÃ³ a
-// Free Software Foundation Ã¡ltal kiadott GNU General Public License
-// dokumentumÃ¡ban leÃ­rtak; akÃ¡r a licenc 3-as, akÃ¡r (tetszÃµleges) kÃ©sÃµbbi
-// vÃ¡ltozata szerint.
+// Ez a program szabad szoftver; terjeszthetõ illetve módosítható a
+// Free Software Foundation által kiadott GNU General Public License
+// dokumentumában leírtak; akár a licenc 3-as, akár (tetszõleges) késõbbi
+// változata szerint.
 //
-// Ez a program abban a remÃ©nyben kerÃ¼l kÃ¶zreadÃ¡sra, hogy hasznos lesz,
-// de minden egyÃ©b GARANCIA NÃ‰LKÃœL, az ELADHATÃ“SÃGRA vagy VALAMELY CÃ‰LRA
-// VALÃ“ ALKALMAZHATÃ“SÃGRA valÃ³ szÃ¡rmaztatott garanciÃ¡t is beleÃ©rtve.
-// TovÃ¡bbi rÃ©szleteket a GNU General Public License tartalmaz.
+// Ez a program abban a reményben kerül közreadásra, hogy hasznos lesz,
+// de minden egyéb GARANCIA NÉLKÜL, az ELADHATÓSÁGRA vagy VALAMELY CÉLRA
+// VALÓ ALKALMAZHATÓSÁGRA való származtatott garanciát is beleértve.
+// További részleteket a GNU General Public License tartalmaz.
 //
-// A felhasznÃ¡lÃ³nak a programmal egyÃ¼tt meg kell kapnia a GNU General
-// Public License egy pÃ©ldÃ¡nyÃ¡t; ha mÃ©gsem kapta meg, akkor
+// A felhasználónak a programmal együtt meg kell kapnia a GNU General
+// Public License egy példányát; ha mégsem kapta meg, akkor
 // tekintse meg a <http://www.gnu.org/licenses/> oldalon.
 //
 //
 // Version history:
-// 
-// 0.0.1    BÃ¡r a Nokia Qt SDK Ã©ppen tartalmaz egy Mandelbrotos pÃ©ldÃ¡t, de
-// ezt nem tartottam megfelelÃµnek elsÃµ Qt programkÃ©nt ajÃ¡nlani, mert elÃ©g
-// bonyolult: hasznÃ¡l kÃ¶lcsÃ¶nÃ¶s kizÃ¡rÃ¡st stb. EzÃ©rt "from scratch" megÃ­rtam
-// egy sajÃ¡tot a JavÃ¡t tanÃ­tokhoz Ã­rt dallamÃ¡ra:
+//
+// 0.0.1    Bár a Nokia Qt SDK éppen tartalmaz egy Mandelbrotos példát, de
+// ezt nem tartottam megfelelõnek elsõ Qt programként ajánlani, mert elég
+// bonyolult: használ kölcsönös kizárást stb. Ezért "from scratch" megírtam
+// egy sajátot a Javát tanítokhoz írt dallamára:
 // http://www.tankonyvtar.hu/informatika/javat-tanitok-2-2-080904-1
 //
 
@@ -90,7 +90,7 @@ void FrakAblak::paintEvent(QPaintEvent*) {
 
 void FrakAblak::mousePressEvent(QMouseEvent* event) {
 
-    // A nagyÃ­tandÃ³ kijelÃ¶lt terÃ¼letet bal felsÃµ sarka:
+    // A nagyítandó kijelölt területet bal felsõ sarka:
     x = event->x();
     y = event->y();
     mx = 0;
@@ -101,9 +101,9 @@ void FrakAblak::mousePressEvent(QMouseEvent* event) {
 
 void FrakAblak::mouseMoveEvent(QMouseEvent* event) {
 
-    // A nagyÃ­tandÃ³ kijelÃ¶lt terÃ¼let szÃ©lessÃ©ge Ã©s magassÃ¡ga:
+    // A nagyítandó kijelölt terület szélessége és magassága:
     mx = event->x() - x;
-    my = mx; // nÃ©gyzet alakÃº
+    my = mx; // négyzet alakú
 
     update();
 }
